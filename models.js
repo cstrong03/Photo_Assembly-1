@@ -29,7 +29,9 @@ const Comment = db.define('comment', {
 User.hasMany(Post, {
     onDelete: 'cascade'
 });
-
+User.hasMany(Comment, {
+    onDelete: 'cascade'
+});
 Post.hasMany(Comment, {
     onDelete: 'cascade'
 })
