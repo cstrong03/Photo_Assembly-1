@@ -1,0 +1,34 @@
+{
+  "name": "photo_assembly",
+  "version": "1.0.0",
+  "description": "We will be creating a site similar to Instagram, with users being able to use full CRUD functionality: post pictures, see pictures, update pictures,and delete pictures. We will be implement authentication in order for users to be able to see other users and their posts, log in, edit posts, and interact with posts - like, comment, or share. There will be an explore option as well, where non logged in users will be able to see a select few posts, depending on their popularity or trending status. Users will be able to follow/add each other, and see a total feed based on who they are following or have added.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Juvi925/Photo_Assembly.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Juvi925/Photo_Assembly/issues"
+  },
+  "homepage": "https://github.com/Juvi925/Photo_Assembly#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.11.0",
+    "sequelize": "^5.8.6"
+  }
+}
