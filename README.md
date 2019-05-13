@@ -6,6 +6,10 @@ React, Sequelize, Express, PostgreSQL, HTML, CSS
 
 # Project Layout
 
+<img width="221" alt="Component Hierarchy P3" src="https://user-images.githubusercontent.com/47332766/57645014-62ccbe80-758b-11e9-9211-3172ebef67eb.png">
+
+<img width="800" alt="ERD P3" src="https://user-images.githubusercontent.com/47332766/57647390-d58c6880-7590-11e9-92a3-9ceef62807a3.png">
+
 ![p3 layout](https://media.git.generalassemb.ly/user/19639/files/1b3d3700-7579-11e9-857a-a43e025ae27f)
 
 # Collaboration
