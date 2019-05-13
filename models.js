@@ -35,9 +35,9 @@ User.hasMany(Comment, {
 Post.hasMany(Comment, {
     onDelete: 'cascade'
 })
-Comment.hasOne(Post, {
-    onDelete: 'cascade'
-})
+// Comment.hasOne(Post, {
+//     onDelete: 'cascade'
+// })
 
 Comment.belongsTo(User)
 Comment.belongsTo(Post)

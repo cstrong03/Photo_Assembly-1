@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
-const authRouter = require('./routers/authRouter')
+const authRouter = require('./routes/authRouter')
 // const appRouter = require('./routers/appRouter')
 const passport = require('passport')
 const { authorized } = require('./auth/auth')
@@ -21,11 +21,11 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 app.use('/auth', authRouter)
 // app.use('/app', appRouter)
-app.use('/app', authorized, appRouter)
+// app.use('/app', authorized, appRouter)
 app.use(passport.initialize())
 
 
-app.use('/user', userRouter)
+// app.use('/user', userRouter)
 
 
 app.get('/', async (request, response) => {
