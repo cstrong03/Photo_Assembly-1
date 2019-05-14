@@ -1,4 +1,5 @@
 const { User, Post, Comment } = require('../models')
+// const bcrypt = requrie('bcrypt')
 
 async function main(){
 
