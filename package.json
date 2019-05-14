@@ -4,7 +4,11 @@
   "description": "We will be creating a site similar to Instagram, with users being able to use full CRUD functionality: post pictures, see pictures, update pictures,and delete pictures. We will be implement authentication in order for users to be able to see other users and their posts, log in, edit posts, and interact with posts - like, comment, or share. There will be an explore option as well, where non logged in users will be able to see a select few posts, depending on their popularity or trending status. Users will be able to follow/add each other, and see a total feed based on who they are following or have added.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "init": "dropdb --if-exists photo_db && createdb photo_db",
+    "reset": "node ./scripts/resetDb",
+    "seed": "node ./scripts/seedDb",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",

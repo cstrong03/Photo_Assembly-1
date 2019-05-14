@@ -1,4 +1,4 @@
-const {  } = require('../models')
+const { User, Post, Comment } = require('../models')
 
 async function main(){
 
@@ -18,23 +18,23 @@ async function main(){
   const cai = await User.create({
     username: 'da_real_cai',
     password: 'helloworld',
-    user_photo: 'image1'
+    avatar: 'image1'
   })
 
   const niecey = await User.create({
     username: 'petty_pendagrass',
     password: 'helloworld',
-    user_photo: 'image2'
+    avatar: 'image2'
   })
   const fahad = await User.create({
     username: 'fitness_savage',
     password: 'helloworld',
-    user_photo: 'image3'
+    avatar: 'image3'
   })
   const sammi = await User.create({
     username: 'dr_deez',
     password: 'helloworld',
-    user_photo: 'image4'
+    avatar: 'image4'
   })
 
   const post01 = await Post.create({
@@ -67,14 +67,19 @@ async function main(){
     comment: `Factz my guy!!!`
   })
 
-  await cai.setPost(post03)
-  await cai.setComment(comment01)
-  await niecey.setPost(post01)
-  await niecey.setComment(comment04)
-  await fahad.setPost(post04)
-  await fahad.setComment(comment02)
-  await sammi.setPost(post02)
-  await sammi.setComment(comment03)
+  await post03.setUser(cai)
+  await comment01.setUser(cai)
+  await post01.setUser(niecey)
+  await comment04.setUser(niecey)
+  await post04.setUser(fahad)
+  await comment02.setUser(fahad)
+  await post02.setUser(sammi)
+  await comment03.setUser(sammi)
+  await comment01.setPost(post01)
+  await comment02.setPost(post02)
+  await comment03.setPost(post03)
+  await comment04.setPost(post04)
+
 }
 
 async function magic(){
