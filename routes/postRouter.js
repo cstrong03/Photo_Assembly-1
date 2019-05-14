@@ -5,7 +5,7 @@ const postRouter = express.Router();
 postRouter.get('/', async (request, response) =>
 {
   try {
-    const posts = await post.findAll();
+    const posts = await Post.findAll();
     response.json({posts})
   } catch (e) {
     response.status(500).json({ msg: e.message })
@@ -44,6 +44,7 @@ postRouter.put('/:id', async (request, response) => {
     try {
         const id = request.params.id
         const editPost = await Post.findByPk(id)
+        if (editPost) await editPost.update(request.body)
         response.json(editPost)
     } catch (e) {
         console.log(e)
