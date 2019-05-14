@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import FeedView from './components/FeedView'
+import LowerMenu from './components/LowerMenu'
 
 
 function App() {
@@ -10,7 +11,9 @@ function App() {
       <main className="ui container">
         <FeedView />
       </main>
-      <footer></footer>
+      <footer>
+        <LowerMenu />
+      </footer>
     </div>
   );
 }
