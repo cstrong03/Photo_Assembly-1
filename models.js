@@ -1,4 +1,5 @@
 const { Sequelize } = require('sequelize')
+const bcrypt = require('bcrypt')
 
 const db = new Sequelize({
   database: 'photo_db',
@@ -43,7 +44,10 @@ Comment.belongsTo(User)
 Comment.belongsTo(Post)
 Post.belongsTo(User)
 
-
+User.beforeCreate( async (user, options) => {
+    const hashedPassword = await bcrypt.hash(user.password, 12) 
+      user.password = hashedPassword;
+    });
 
 module.exports = {
   db,
