@@ -9,9 +9,12 @@ const { User } = require('../models.js')
 authRouter.post('/signup', async(req, res, next) => {
   passport.authenticate('signup', async(err, user, info) => {
     try {
+        const hashedUser = async (singleUser) => {
+            singleUser.password = await bcrypt.hash(singleUser.password, 12);
+        }
+        await hashedUser(user);
+        console.log(user)
       if (err) {
-          const hashedUser = (user) => {bcrypt.hash(user.password, 12)}
-          hashedUser(User)
         let error = new Error(err.message || info.message)
         error.status = 400
         return next(error)
