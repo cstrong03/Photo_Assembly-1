@@ -6,6 +6,7 @@ const authRouter = require('./routes/authRouter')
 // const appRouter = require('./routers/appRouter')
 const passport = require('passport')
 const { authorized } = require('./auth/auth')
+const { userRouter } = require('./routes/userRouter')
 
 // establishing the I/O port
 const PORT = process.env.PORT || 4567
@@ -25,7 +26,7 @@ app.use('/auth', authRouter)
 app.use(passport.initialize())
 
 
-// app.use('/user', userRouter)
+app.use('/user', userRouter)
 
 
 app.get('/', async (request, response) => {

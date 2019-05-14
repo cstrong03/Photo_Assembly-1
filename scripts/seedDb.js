@@ -18,23 +18,23 @@ async function main(){
   const cai = await User.create({
     username: 'da_real_cai',
     password: 'helloworld',
-    user_photo: 'image1'
+    avatar: 'image1'
   })
 
   const niecey = await User.create({
     username: 'petty_pendagrass',
     password: 'helloworld',
-    user_photo: 'image2'
+    avatar: 'image2'
   })
   const fahad = await User.create({
     username: 'fitness_savage',
     password: 'helloworld',
-    user_photo: 'image3'
+    avatar: 'image3'
   })
   const sammi = await User.create({
     username: 'dr_deez',
     password: 'helloworld',
-    user_photo: 'image4'
+    avatar: 'image4'
   })
 
   const post01 = await Post.create({

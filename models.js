@@ -8,11 +8,10 @@ const db = new Sequelize({
   },
 })
 
-
 const User = db.define('user', {
     username: Sequelize.STRING,
     password: Sequelize.STRING,
-    user_photo: Sequelize.STRING
+    avatar: Sequelize.STRING
 });
 
 const Post = db.define('post', {
