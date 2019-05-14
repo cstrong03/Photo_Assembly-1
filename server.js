@@ -8,6 +8,7 @@ const passport = require('passport')
 const { authorized } = require('./auth/auth')
 const { userRouter } = require('./routes/userRouter')
 const { postRouter } = require('./routes/postRouter')
+const uploadRouter = require('./aws/fileUploadRoute')
 
 
 // establishing the I/O port
@@ -26,10 +27,9 @@ app.use('/auth', authRouter)
 // app.use('/app', appRouter)
 // app.use('/app', authorized, appRouter)
 app.use(passport.initialize())
-
-
 app.use('/user', userRouter)
 app.use('/post', postRouter)
+app.use('/image-upload', uploadRouter)
 
 
 
@@ -44,5 +44,7 @@ app.get('/', async (request, response) => {
   });
 
 
+
+  
 
 app.listen(PORT, () => console.log(`Photo Assembly backend listening on port: ${PORT}!`))
