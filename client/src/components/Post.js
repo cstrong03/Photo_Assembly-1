@@ -3,8 +3,6 @@ import Comment from './Comment'
 import Faker from 'faker';
 
 
-
-
 export default class Post extends Component {
     render() {
         let userName = Faker.name.firstName();
