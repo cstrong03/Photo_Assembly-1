@@ -17,22 +17,26 @@ async function main(){
 
 
   const cai = await User.create({
+    email: 'real3$t@yahoo.com',
     username: 'da_real_cai',
     password: 'helloworld',
     avatar: 'image1'
   })
 
   const niecey = await User.create({
+    email: 'ayoooo@yahoo.com',
     username: 'petty_pendagrass',
     password: 'helloworld',
     avatar: 'image2'
   })
   const fahad = await User.create({
+    email: 'fahaddo@yahoo.com',
     username: 'fitness_savage',
     password: 'helloworld',
     avatar: 'image3'
   })
   const sammi = await User.create({
+    email: 'srammi@yahoo.com',
     username: 'dr_deez',
     password: 'helloworld',
     avatar: 'image4'

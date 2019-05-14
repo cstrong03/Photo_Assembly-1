@@ -9,11 +9,6 @@ const { User } = require('../models.js')
 authRouter.post('/signup', async(req, res, next) => {
   passport.authenticate('signup', async(err, user, info) => {
     try {
-        const hashedUser = async (singleUser) => {
-            singleUser.password = await bcrypt.hash(singleUser.password, 12);
-        }
-        await hashedUser(user);
-        console.log(user)
       if (err) {
         let error = new Error(err.message || info.message)
         error.status = 400
@@ -34,18 +29,27 @@ authRouter.post('/signup', async(req, res, next) => {
   })(req, res, next)
 })
 
-// matches '/auth/login' route
 authRouter.post('/login', (req, res, next) => {
-//   res.status(200).json({message: "So far so good!"})
   passport.authenticate('login', async(err, user, info) => {
     try {
-      let error
+        const {username, password} = req.body;
+        const user = await User.findOne({where: {username}});
+        const valid =  await bcrypt.compare(password, user.password);
+        if (valid) {
+        const { username, id } = user
+        const payload = { username, id }
+
+        const token = jwtSign(payload)
+        console.log(token)
+        return res.json({ user, token, id })
+        }
+      let error;
       if (err) {
         error = new Error(err.message)
         error.status = 500
 
         return next(error)
-      }
+     }
 
       if (!user) {
         error = new Error(info.message)
@@ -62,16 +66,32 @@ authRouter.post('/login', (req, res, next) => {
           return next(err)
         }
 
-        const { username, id } = user
-        const payload = { username, id }
-
-        const token = jwtSign(payload)
-        return res.json({ user, token })
       })
     } catch (error) {
       return next(error)
     }
   })(req, res, next)
 })
+
+// authRouter.post('/login', async (req, res) => {
+//     try {
+//       const {username, password} = req.body;
+//       const user = await User.findOne({where: {username}});
+//       const valid =  await bcrypt.compare(password, user.password);
+  
+//       if (valid) {
+//         const { id, username } = user;
+//         const token = jwtSign({username, id});
+//         res.json({token,valid,id});
+//       }
+//       else {
+//         throw Error('Invalid username or password');
+//       }
+  
+//     }
+//     catch(evt) {
+//       res.status(401).json(evt.message);
+//     }
+//   });
 
 module.exports = authRouter
