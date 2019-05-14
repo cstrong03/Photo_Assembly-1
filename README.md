@@ -12,8 +12,7 @@ React, Sequelize, Express, PostgreSQL, HTML, CSS
 
 <img width="773" alt="ERD P3 Updated" src="https://user-images.githubusercontent.com/47332766/57648711-32d5e900-7594-11e9-9b6b-1597501b75f4.png">
 
->>>>>>> 10076e6215760b3d4cdf6cf6c88f1b2af095f93f
-![p3 layout](https://media.git.generalassemb.ly/user/19639/files/1b3d3700-7579-11e9-857a-a43e025ae27f)
+[p3 layout](https://media.git.generalassemb.ly/user/19639/files/1b3d3700-7579-11e9-857a-a43e025ae27f)
 
 # Collaboration
 Created by Stephen Chen, Charisse Strong, and Joovay Arias

@@ -44,6 +44,7 @@ userRouter.put('/:id', async (request, response) => {
     try {
         const id = request.params.id
         const editUser = await User.findByPk(id)
+        if (editUser) await editUser.update(request.body)
         response.json(editUser)
     } catch (e) {
         console.log(e)
