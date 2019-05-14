@@ -21,7 +21,7 @@ passport.use(new JWTStrategy({
         console.log(" *** decoded token ***", token)
       const user = await User.findByPk(token.id);
       console.log(`user from jwt Token: ${user}`)
-  
+
       if (user) {
         done(null, user)
       } else {
@@ -57,29 +57,26 @@ passport.use('login', new LocalStrategy({
   }, async (email, password, done) => {
     try {
       // find user by their email
-      console.log("email", email)
-      console.log("password", password)
-
       const user = await User.findOne({ where: { email: email }})
       console.log(user.email)
-  
+
       console.log(`*** user: ${user} ***`)
-  
+
       if (!user) {
         return done(null, false, { message: 'User not found'})
       }
-  
+
       // compare passwords
       const validate = await bcrypt.compare(password, user.password);
       console.log(`*** validate: ${validate} ***`)
-  
+
       if (!validate) {
         return done(null, false, { message: 'Wrong password'})
       }
-  
+
       // login was a success, return the user object
       return done(null, user, { message: 'Logged in successfully'})
-  
+
     } catch(error) {
       return done(error)
     }
@@ -106,7 +103,7 @@ const authorized = (request, response, next) => {
     })(request, response, next);
   }
 
-  module.exports = { 
+  module.exports = {
       passport,
       jwtSign,
       authorized
