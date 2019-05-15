@@ -33,6 +33,12 @@ class App extends Component {
     }
   }
 
+  editToken = (token) => {
+    this.setState({
+      token: token
+    })
+  }
+
   render() {
   return (
     <div >
@@ -42,10 +48,10 @@ class App extends Component {
         </Link>
       </header>
       <main className="ui container custom">
-        <Route exact path="/" render={() => <Register />} />
+        <Route exact path="/" render={() => <Login />} />
         <Route path="/feed" render={() => <FeedView />}/>
         <Route path="/post/create" render={() => <CreatePost/>}/>
-        <Route path="/profile" render={() => <Profile />}/>
+        <Route path="/profile" render={() => <Profile editToken={this.editToken} />}/>
         <Route path="/login" render={() => <Login onChangeHandler={this.onChangeHandler}/>} />
         <Route path="/register" render={() => <Register />} />
       </main>

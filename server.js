@@ -32,7 +32,6 @@ app.use('/post', postRouter)
 app.use('/image-upload', uploadRouter)
 
 
-
 app.get('/', async (request, response) => {
     try {
       response.json({
