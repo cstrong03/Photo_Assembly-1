@@ -73,25 +73,4 @@ authRouter.post('/login', (req, res, next) => {
   })(req, res, next)
 })
 
-// authRouter.post('/login', async (req, res) => {
-//     try {
-//       const {username, password} = req.body;
-//       const user = await User.findOne({where: {username}});
-//       const valid =  await bcrypt.compare(password, user.password);
-  
-//       if (valid) {
-//         const { id, username } = user;
-//         const token = jwtSign({username, id});
-//         res.json({token,valid,id});
-//       }
-//       else {
-//         throw Error('Invalid username or password');
-//       }
-  
-//     }
-//     catch(evt) {
-//       res.status(401).json(evt.message);
-//     }
-//   });
-
 module.exports = authRouter
