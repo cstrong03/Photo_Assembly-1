@@ -9,17 +9,13 @@ export default class Profile extends Component {
 
         return (
             <div>
-                <div className="ui top attached tabular menu">
-                    <a className="active item">
-                        Home
-                    </a>
-                    <a className="item">
-                        Followers
-                    </a>
-                    <a className="item">
-                        Following
-                    </a>
-
+                <div className="ui secondary pointing menu">
+                    <a className="active item">Home</a>
+                    <a className="item">Followers</a>
+                    <a className="item">Following</a>
+                    <div className="right menu">
+                        <a className="ui item">Logout</a>
+                    </div>
                 </div>
                 <div className="ui fluid bottom attached segment">
                     <div className="ui divided items">
