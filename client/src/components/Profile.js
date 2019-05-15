@@ -1,8 +1,17 @@
 import React, { Component } from 'react'
 import Faker from 'faker';
 import Post from './Post'
+import { Redirect } from 'react-router-dom'
 
 export default class Profile extends Component {
+
+    logoutUser = () => {
+        localStorage.clear();
+        this.props.editToken(null)
+        return <Redirect to="/" />
+    }
+
+
     render() {
 
         let userName = Faker.name.firstName();
@@ -14,7 +23,7 @@ export default class Profile extends Component {
                     <a className="item">Followers</a>
                     <a className="item">Following</a>
                     <div className="right menu">
-                        <a className="ui item">Logout</a>
+                        <a onClick={this.logoutUser} className="ui item">Logout</a>
                     </div>
                 </div>
                 <div className="ui fluid bottom attached segment">

@@ -76,4 +76,14 @@ authRouter.post('/login', (req, res, next) => {
   })(req, res, next)
 })
 
+authRouter.use('/logout', (req, res, next) => {
+    try {
+    req.logout()
+    res.redirect('/')
+    } catch (e) {
+        console.log(e)
+    }
+})
+
+
 module.exports = authRouter
