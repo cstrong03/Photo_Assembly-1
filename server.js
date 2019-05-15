@@ -23,10 +23,10 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json())
+app.use(passport.initialize())
 app.use('/auth', authRouter)
 // app.use('/app', appRouter)
 app.use('/app', authorized, appRouter)
-app.use(passport.initialize())
 app.use('/user', userRouter)
 app.use('/post', postRouter)
 app.use('/image-upload', uploadRouter)

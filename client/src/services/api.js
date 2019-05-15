@@ -3,12 +3,12 @@ const URL = 'http://localhost:4567';
 
 // for the photo/video/posts uploads.
 const api = axios.create({
-    baseURL: `${URL}/post`
+    baseURL: `${URL}`
 })
 
 export const fetchPost = async()=>{
   try {
-    const resp = await api.get('/')
+    const resp = await api.get('/post')
     console.log(resp);
     return resp.data.posts
   } catch (e) {
@@ -18,7 +18,7 @@ export const fetchPost = async()=>{
 
 export const createAPost = async(data)=>{
   try {
-    const resp = await api.post('/', data)
+    const resp = await api.post('/post', data)
     console.log(resp);
     return resp.data.newPost    //waiting to create posts
   } catch (e) {
@@ -28,7 +28,7 @@ export const createAPost = async(data)=>{
 
 export const updatePosts = async(id, data)=>{
   try {
-    const resp = await api.put(`/${id}`, data)
+    const resp = await api.put(`/post/${id}`, data)
     console.log(resp);
     return resp.data.editPost
   } catch (e) {
@@ -38,7 +38,7 @@ export const updatePosts = async(id, data)=>{
 
 export const deletePosts = async(id, data)=>{
   try {
-    const resp = await api.destroy(`/${id}`, data)
+    const resp = await api.destroy(`/post/${id}`, data)
     console.log(resp)
     return resp.data.deletePost
   } catch (e) {
@@ -49,7 +49,7 @@ export const deletePosts = async(id, data)=>{
 // for the users
 export const getUser = async()=>{
   try {
-    const resp = await api.get('/')
+    const resp = await api.get('/user')
     console.log()
     return resp.data.users
   } catch (e) {
@@ -57,19 +57,19 @@ export const getUser = async()=>{
   }
 }
 
-// export const createUser = async(data)=>{
-//   try {
-//     const resp = await api.post('/', data)
-//     console.log(resp);
-//     return resp.data
-//   } catch (e) {
-//   console.log(e);
-//   }
-// }
+export const createUser = async(data)=>{
+  try {
+    const resp = await api.post('/auth/signup', data)
+    console.log(resp.data);
+    return resp.data
+  } catch (e) {
+  console.log(e);
+  }
+}
 
 export const editAUser = async(id, data)=>{
   try {
-    const resp = await api.put(`/${id}`, data)
+    const resp = await api.put(`/user/${id}`, data)
     console.log(resp);
     return resp.data.editUser
   } catch (e) {
@@ -79,7 +79,7 @@ export const editAUser = async(id, data)=>{
 
 export const deleteAUser = async(id, data)=>{
   try {
-    const resp = await api.delete(`/${id}`, data)
+    const resp = await api.delete(`/user/${id}`, data)
     console.log(resp)
     return resp.data.deleteUser
   } catch (e) {
