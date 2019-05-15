@@ -45,7 +45,16 @@ postRouter.put('/:id', async (request, response) => {
         const id = request.params.id
         const editPost = await Post.findByPk(id)
         if (editPost) await editPost.update(request.body)
-        response.json(editPost)
+        response.json({editPost})
+    } catch (e) {
+        console.log(e)
+    }
+})
+
+postRouter.post('/create', async (request, response) => {
+    try {
+        const newPost = await Post.create(request.body)
+        response.json(newPost)
     } catch (e) {
         console.log(e)
     }
