@@ -1,4 +1,5 @@
-const { User, Post, Comment } = require('../models')
+const { User, Post, Comment, Like } = require('../models')
+// const bcrypt = requrie('bcrypt')
 
 async function main(){
 
@@ -13,25 +14,32 @@ async function main(){
   await Comment.destroy({
     where: {}
   });
+  await Like.destroy({
+    where: {}
+  });
 
 
   const cai = await User.create({
+    email: 'real3$t@yahoo.com',
     username: 'da_real_cai',
     password: 'helloworld',
-    avatar: 'image1'
+    avatar: 'https://cdn.someecards.com/posts/memes-about-work-3cD.jpg'
   })
 
   const niecey = await User.create({
+    email: 'ayoooo@yahoo.com',
     username: 'petty_pendagrass',
     password: 'helloworld',
-    avatar: 'image2'
+    avatar: 'https://www.todaysparent.com/wp-content/uploads/2017/06/when-your-kid-becomes-a-meme-1024x576-1497986561.jpg'
   })
   const fahad = await User.create({
+    email: 'fahaddo@yahoo.com',
     username: 'fitness_savage',
     password: 'helloworld',
     avatar: 'image3'
   })
   const sammi = await User.create({
+    email: 'srammi@yahoo.com',
     username: 'dr_deez',
     password: 'helloworld',
     avatar: 'image4'

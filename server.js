@@ -3,11 +3,12 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
 const authRouter = require('./routes/authRouter')
-// const appRouter = require('./routers/appRouter')
+const appRouter = require('./routes/appRouter')
 const passport = require('passport')
 const { authorized } = require('./auth/auth')
 const { userRouter } = require('./routes/userRouter')
 const { postRouter } = require('./routes/postRouter')
+const uploadRouter = require('./aws/fileUploadRoute')
 
 
 // establishing the I/O port
@@ -24,12 +25,11 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 app.use('/auth', authRouter)
 // app.use('/app', appRouter)
-// app.use('/app', authorized, appRouter)
+app.use('/app', authorized, appRouter)
 app.use(passport.initialize())
-
-
 app.use('/user', userRouter)
 app.use('/post', postRouter)
+app.use('/image-upload', uploadRouter)
 
 
 
@@ -43,6 +43,15 @@ app.get('/', async (request, response) => {
     }
   });
 
+app.use((err, req, res, next) => {
+  // render the error
+  console.log('error in error handler', err)
+  res.status(err.status || 500);
+  res.json({ message: err.message });
+});
 
+
+
+  
 
 app.listen(PORT, () => console.log(`Photo Assembly backend listening on port: ${PORT}!`))
