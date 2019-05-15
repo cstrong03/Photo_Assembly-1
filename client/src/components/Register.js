@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Login from './Login'
+import { Link } from 'react-router-dom'
 
 export default class Register extends Component {
     render() {
@@ -17,11 +19,11 @@ export default class Register extends Component {
                         <label>Password</label>
                         <input type="password" name="password" placeholder="Password" />
                     </div>
-                    <button className="ui positive fluid button" type="submit">Sign In</button>
+                    <button className="ui positive fluid button" type="submit">Sign Up</button>
                 </form>
                 <div className="ui warning message">
                     <i className="icon help"></i>
-                    Already Have An Account? <a href="#">Login here</a>
+                    Already Have An Account? <Link to='/login' href="#">Login here</Link>
                 </div>
             </div>
         )

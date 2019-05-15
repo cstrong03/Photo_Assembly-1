@@ -25,7 +25,8 @@ function App() {
         <Route path="/feed" render={() => <FeedView />}/>
         <Route path="/post/create" render={() => <CreatePost/>}/>
         <Route path="/profile" render={() => <Profile />}/>
-
+        <Route path="/login" render={() => <Login />} />
+        <Route path="/register" render={() => <Register />} />
       </main>
       <footer>
         <LowerMenu />

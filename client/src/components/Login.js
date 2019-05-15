@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class Login extends Component {
     render() {
@@ -17,7 +18,7 @@ export default class Login extends Component {
                 </form>
                 <div className="ui warning message">
                     <i className="icon help"></i>
-                    Don't Have An Account? <a href="#">Register here</a>
+                    Don't Have An Account? <Link to="/register" href="#">Register here</Link>
                 </div>
             </div>
         )
