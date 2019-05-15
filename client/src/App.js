@@ -48,10 +48,10 @@ class App extends Component {
         </Link>
       </header>
       <main className="ui container custom">
-        <Route exact path="/" render={() => <Login />} />
+        <Route exact path="/" render={() => <Login onChangeHandler={this.onChangeHandler}/>} />
         <Route path="/feed" render={() => <FeedView />}/>
         <Route path="/post/create" render={() => <CreatePost/>}/>
-        <Route path="/profile" render={() => <Profile editToken={this.editToken} />}/>
+        <Route path="/profile" render={() => <Profile editToken={this.editToken} token={this.state.token} />}/>
         <Route path="/login" render={() => <Login onChangeHandler={this.onChangeHandler}/>} />
         <Route path="/register" render={() => <Register />} />
       </main>
