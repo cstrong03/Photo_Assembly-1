@@ -10,7 +10,6 @@ export default class CreatePost extends Component {
         post: null,
         created: false,
         picture: blankPic,
-        progress: 0,
         file: '',
         preview: false
     }
@@ -54,9 +53,6 @@ export default class CreatePost extends Component {
                     <div className="ui fluid">
                         <div className="image">
                             <img alt="random" src={this.state.picture} className="ui fluid image" />
-                            <div className="ui bottom attached progress" data-percent={this.state.progress}>
-                                <div className="bar"></div>
-                            </div>
                             <input ref={fileInput => this.fileInput = fileInput} style={{ display: 'none' }} type="file" onChange={event => this.handleImageChange(event)} />
                             <div onClick={() => this.fileInput.click()} className="ui bottom attached button" tabIndex="0">Choose a Picture</div>
                         </div>
