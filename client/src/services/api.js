@@ -57,4 +57,32 @@ export const getUser = async()=>{
   }
 }
 
-export const 
+// export const createUser = async(data)=>{
+//   try {
+//     const resp = await api.post('/', data)
+//     console.log(resp);
+//     return resp.data
+//   } catch (e) {
+//   console.log(e);
+//   }
+// }
+
+export const editAUser = async(id, data)=>{
+  try {
+    const resp = await api.put(`/${id}`, data)
+    console.log(resp);
+    return resp.data.editUser
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export const deleteAUser = async(id, data)=>{
+  try {
+    const resp = await api.delete(`/${id}`, data)
+    console.log(resp)
+    return resp.data.deleteUser
+  } catch (e) {
+    console.log();
+  }
+}
