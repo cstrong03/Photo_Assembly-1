@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
-import FeedView from './components/FeedView'
-import LowerMenu from './components/LowerMenu'
 import UpperMenu from './components/UpperMenu'
+import LowerMenu from './components/LowerMenu'
+
+import FeedView from './components/FeedView'
 import CreatePost from './components/CreatePost'
+import Profile from './components/Profile'
 import Login from './components/Login'
 import Register from './components/Register'
 
@@ -14,7 +16,7 @@ function App() {
         <UpperMenu />
       </header>
       <main className="ui container custom">
-        <Register />
+        <Profile />
       </main>
       <footer>
         <LowerMenu />
