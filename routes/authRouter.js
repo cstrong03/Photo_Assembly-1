@@ -18,8 +18,11 @@ authRouter.post('/signup', async(req, res, next) => {
       if (!user) {
         return res.status(401).json({message: info.message})
       }
-      const { username, id } = user
-      const payload = { username, id }
+    
+        console.log(user)
+      const { email, username, password } = user
+      const payload = { email, username, password }
+      console.log("from signup:", payload)
 
       const token = jwtSign(payload)
       return res.json({user: user, token: token, message: info.message})
