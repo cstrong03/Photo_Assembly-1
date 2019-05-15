@@ -8,15 +8,25 @@ import CreatePost from './components/CreatePost'
 import Profile from './components/Profile'
 import Login from './components/Login'
 import Register from './components/Register'
+import { Route, Link } from 'react-router-dom'
+import Profile from './components/Profile'
+
+
 
 function App() {
   return (
     <div >
       <header>
-        <UpperMenu />
+        <Link to="/">
+          <UpperMenu />
+        </Link>
       </header>
       <main className="ui container custom">
-        <Profile />
+        <Route exact path="/" render={() => <Register />} />
+        <Route path="/feed" render={() => <FeedView />}/>
+        <Route path="/post/create" render={() => <CreatePost/>}/>
+        <Route path="/profile" render={() => <Profile />}/>
+
       </main>
       <footer>
         <LowerMenu />
