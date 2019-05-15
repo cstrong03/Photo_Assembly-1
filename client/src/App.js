@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component}  from 'react';
 import './App.css';
 import UpperMenu from './components/UpperMenu'
 import LowerMenu from './components/LowerMenu'
@@ -12,7 +12,28 @@ import Profile from './components/Profile'
 
 
 
-function App() {
+class App extends Component {
+  state = {
+    token: null
+  }
+
+  onChangeHandler = async (token) => {
+    await this.setState({
+      token:token
+    })
+    console.log(this.state.token)
+  }
+
+  componentDidMount() {
+    console.log(localStorage.getItem('token'))
+    if (localStorage.getItem('token') != null) {
+      this.setState({
+        token: localStorage.getItem('token')
+      })
+    }
+  }
+
+  render() {
   return (
     <div >
       <header>
@@ -25,7 +46,7 @@ function App() {
         <Route path="/feed" render={() => <FeedView />}/>
         <Route path="/post/create" render={() => <CreatePost/>}/>
         <Route path="/profile" render={() => <Profile />}/>
-        <Route path="/login" render={() => <Login />} />
+        <Route path="/login" render={() => <Login onChangeHandler={this.onChangeHandler}/>} />
         <Route path="/register" render={() => <Register />} />
       </main>
       <footer>
@@ -33,6 +54,7 @@ function App() {
       </footer>
     </div>
   );
+  }
 }
 
 export default App;

@@ -33,7 +33,10 @@ authRouter.post('/login', (req, res, next) => {
   passport.authenticate('login', async(err, user, info) => {
     try {
         const {username, password} = req.body;
+        console.log(req.body)
+
         const user = await User.findOne({where: {username}});
+        console.log(user)
         const valid =  await bcrypt.compare(password, user.password);
         if (valid) {
         const { username, id } = user

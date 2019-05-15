@@ -49,9 +49,8 @@ export const deletePosts = async(id, data)=>{
 // for the users
 export const getUser = async()=>{
   try {
-    const resp = await api.get('/user')
-    console.log()
-    return resp.data.users
+    const resp = await api.get(`/user`)
+    return resp.data.user
   } catch (e) {
     console.log(e)
   }
@@ -82,6 +81,16 @@ export const deleteAUser = async(id, data)=>{
     const resp = await api.delete(`/user/${id}`, data)
     console.log(resp)
     return resp.data.deleteUser
+  } catch (e) {
+    console.log();
+  }
+}
+
+export const loginUser = async(data)=>{
+  try {
+    const resp = await api.post(`/auth/login`, data)
+    console.log(resp)
+    return resp.data
   } catch (e) {
     console.log();
   }
