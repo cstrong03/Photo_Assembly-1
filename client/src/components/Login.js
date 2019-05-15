@@ -35,9 +35,10 @@ export default class Login extends Component {
 
         const user = await loginUser(setUser)
         this.props.onChangeHandler(user.token)
-        console.log(localStorage.getItem('token'))
         localStorage.setItem('token', user.token)
         console.log(user)
+        console.log(localStorage.getItem('token'))
+
         this.setState({
             isLoggedIn: true
         })

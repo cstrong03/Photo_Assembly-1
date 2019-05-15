@@ -8,16 +8,15 @@ export default class Profile extends Component {
     logoutUser = () => {
         localStorage.clear();
         this.props.editToken(null)
-        return <Redirect to="/" />
     }
 
 
     render() {
-
         let userName = Faker.name.firstName();
-
+        let redirect = this.props.token === null ? <Redirect to="/" /> : null
         return (
             <div>
+                {redirect}
                 <div className="ui secondary pointing menu">
                     <a className="active item">Home</a>
                     <a className="item">Followers</a>
