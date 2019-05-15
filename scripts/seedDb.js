@@ -14,6 +14,9 @@ async function main(){
   await Comment.destroy({
     where: {}
   });
+  await Likes.destroy({
+    where: {}
+  });
 
 
   const cai = await User.create({
