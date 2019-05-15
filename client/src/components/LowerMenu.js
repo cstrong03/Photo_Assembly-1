@@ -4,8 +4,6 @@ import FeedView from './FeedView'
 import CreatePost from './CreatePost'
 import Profile from './Profile'
 
-
-
 export default class LowerMenu extends Component {
     render() {
         return (

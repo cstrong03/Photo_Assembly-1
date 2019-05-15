@@ -1,7 +1,7 @@
 const { User, Post, Comment, Like } = require('../models')
 // const bcrypt = requrie('bcrypt')
 
-async function main(){
+async function main() {
 
   await User.destroy({
     where: {}
@@ -14,9 +14,9 @@ async function main(){
   await Comment.destroy({
     where: {}
   });
-  await Like.destroy({
-    where: {}
-  });
+  // await Like.destroy({
+  //   where: {}
+  // });
 
 
   const cai = await User.create({
@@ -90,7 +90,7 @@ async function main(){
 
 }
 
-async function magic(){
+async function magic() {
   try {
     await main();
   } catch (e) {
