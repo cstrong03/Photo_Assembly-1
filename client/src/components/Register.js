@@ -44,8 +44,10 @@ export default class Register extends Component {
     }
 
     render() {
+        let isCreated = this.state.created ? <Redirect to="/login" /> : null
         return (
             <div>
+                {isCreated}
                 <form className="ui form" onSubmit={this.onFormSubmit}>
                     <div className="field">
                         <label>Email</label>
