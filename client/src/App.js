@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
-import FeedView from './components/FeedView'
-import LowerMenu from './components/LowerMenu'
 import UpperMenu from './components/UpperMenu'
+import LowerMenu from './components/LowerMenu'
+
+import FeedView from './components/FeedView'
 import CreatePost from './components/CreatePost'
+import Profile from './components/Profile'
 import Login from './components/Login'
 import Register from './components/Register'
 import { Route, Link } from 'react-router-dom'
@@ -24,6 +26,7 @@ function App() {
         <Route path="/feed" render={() => <FeedView />}/>
         <Route path="/post/create" render={() => <CreatePost/>}/>
         <Route path="/profile" render={() => <Profile />}/>
+
       </main>
       <footer>
         <LowerMenu />
