@@ -1,12 +1,24 @@
 const express = require('express');
 const { User, Post } = require('../models');
 const userRouter = express.Router();
+const authRouter = require('./authRouter')
+userRouter.use('/auth', authRouter)
+
 
 userRouter.get('/', async (request, response) =>
 {
   try {
     const users = await User.findAll();
     response.json({users})
+  } catch (e) {
+    response.status(500).json({ msg: e.message })
+  }
+})
+userRouter.post('/', async (request, response) =>
+{
+  try {
+    const newUser = await User.create(request.body);
+    response.json({newUser})
   } catch (e) {
     response.status(500).json({ msg: e.message })
   }

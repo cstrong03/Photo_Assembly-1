@@ -10,8 +10,17 @@ const db = new Sequelize({
 })
 
 const User = db.define('user', {
-    email: Sequelize.STRING,
-    username: Sequelize.STRING,
+    email: {
+        type: Sequelize.STRING,
+        unique: true,
+        validate: {
+            isEmail: true
+          }
+    },
+    username: {
+        type: Sequelize.STRING,
+        unique: true
+    },
     password: Sequelize.STRING,
     avatar: Sequelize.STRING
 });
@@ -27,26 +36,26 @@ const Comment = db.define('comment', {
     user_id: Sequelize.INTEGER,
     comment: Sequelize.TEXT
 })
-const Like = db.define('like', {
-    user_id: Sequelize.INTEGER,
-    post_id: Sequelize.INTEGER
-})
+// const Like = db.define('like', {
+//     user_id: Sequelize.INTEGER,
+//     post_id: Sequelize.INTEGER
+// })
 
 User.hasMany(Post, {
     onDelete: 'cascade'
 });
-User.hasMany(Like, {
-    onDelete: 'cascade'
-})
+// User.hasMany(Like, {
+//     onDelete: 'cascade'
+// })
 User.hasMany(Comment, {
     onDelete: 'cascade'
 });
 Post.hasMany(Comment, {
     onDelete: 'cascade'
 })
-Post.hasMany(Like, {
-    onDelete: 'cascade'
-})
+// Post.hasMany(Like, {
+//     onDelete: 'cascade'
+// })
 
 
 
