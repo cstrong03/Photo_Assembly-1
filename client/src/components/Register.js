@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Login extends Component {
+export default class Register extends Component {
     render() {
         return (
             <div>
@@ -10,6 +10,10 @@ export default class Login extends Component {
                         <input type="text" name="email" placeholder="Email" />
                     </div>
                     <div className="field">
+                        <label>Username</label>
+                        <input type="text" name="username" placeholder="Username" />
+                    </div>
+                    <div className="field">
                         <label>Password</label>
                         <input type="password" name="password" placeholder="Password" />
                     </div>
@@ -17,7 +21,7 @@ export default class Login extends Component {
                 </form>
                 <div className="ui warning message">
                     <i className="icon help"></i>
-                    Don't Have An Account? <a href="#">Register here</a>
+                    Already Have An Account? <a href="#">Login here</a>
                 </div>
             </div>
         )

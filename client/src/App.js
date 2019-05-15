@@ -5,6 +5,7 @@ import LowerMenu from './components/LowerMenu'
 import UpperMenu from './components/UpperMenu'
 import CreatePost from './components/CreatePost'
 import Login from './components/Login'
+import Register from './components/Register'
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <UpperMenu />
       </header>
       <main className="ui container custom">
-        <FeedView />
+        <Register />
       </main>
       <footer>
         <LowerMenu />
