@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
-import FeedView from './FeedView'
-import CreatePost from './CreatePost'
-import Profile from './Profile'
+import { Link } from 'react-router-dom'
 
 export default class LowerMenu extends Component {
     render() {

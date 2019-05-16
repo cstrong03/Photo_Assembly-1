@@ -5,7 +5,6 @@ import Faker from 'faker';
 export default class Post extends Component {
     render() {
         let userName = Faker.name.firstName();
-
         return (
             <div className="ui fluid card">
                 <div className="content">
@@ -22,7 +21,6 @@ export default class Post extends Component {
                             </span>
                     <i className="comment icon"></i>
                     {Faker.random.number()} comments
-
                             <div className="ui comments">
                         <div className="comment">
                             <div className="content">
@@ -36,13 +34,9 @@ export default class Post extends Component {
                             </div>
                         </div>
                     </div>
-
                     <Comment />
-
                 </div>
-
                 <div className="extra content">
-
                     <div className="ui large transparent left icon input">
                         <i className="comment outline icon"></i>
                         <input type="text" placeholder="Add Comment..." />

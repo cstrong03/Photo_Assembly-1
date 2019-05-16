@@ -3,11 +3,8 @@ import { Link, Redirect } from 'react-router-dom'
 
 export default class Register extends Component {
     render() {
-
         const { username, email, password, createdUser, onFormChange, onFormSubmit } = this.props;
-
         let isCreated = createdUser ? <Redirect to="/login" /> : null
-
         return (
             <div>
                 { isCreated }
