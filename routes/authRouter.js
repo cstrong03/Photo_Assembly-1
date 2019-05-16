@@ -39,14 +39,14 @@ authRouter.post('/login', (req, res, next) => {
         console.log(req.body)
 
         const user = await User.findOne({where: {username}, include: [Post]});
-        console.log(user)
+        console.log(password, user.password);
         const valid =  await bcrypt.compare(password, user.password);
         if (valid) {
         const { username, posts, id } = user
         const payload = { username, posts, id };
 
         const token = jwtSign(payload)
-        console.log(token)
+        console.log('TOKEN: ', token)
         return res.json({ user, token, id })
         }
       let error;

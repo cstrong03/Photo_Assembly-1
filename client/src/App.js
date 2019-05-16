@@ -37,7 +37,7 @@ class App extends Component {
       homepage:''
     }
   }
-      fetchPostData = async()=>{
+  fetchPostData = async () => {
     const posts = await fetchPost()
 
     await this.setState({
@@ -97,7 +97,9 @@ class App extends Component {
         const setUser = {
             "email": this.state.email,
             "username": this.state.username,
-            "password": this.state.password
+            "password": this.state.password,
+            "homepage": this.state.homepage,
+            "description": this.state.description
         }
         const user = await createUser(setUser)
         console.log(user)
