@@ -5,9 +5,10 @@ import Faker from 'faker';
 export default class Post extends Component {
 
 
-
+    // let image = 
 
     render() {
+        let { post } = this.props;
         let userName = Faker.name.firstName();
 
         let input = null
@@ -30,7 +31,7 @@ export default class Post extends Component {
                     <img alt="random" className="ui avatar image" src={Faker.image.avatar()} /> {userName}
                 </div>
                 <div className="image">
-                    <img alt="random" src={Faker.image.image()} />
+                    <img alt="random" src={post.image_url} />
                 </div>
                 <div className="content">
                     <span className="right floated">
@@ -47,7 +48,7 @@ export default class Post extends Component {
                                     <span className="date">Today at 5:42PM</span>
                                 </div>
                                 <div className="text">
-                                    This is Where the Caption Will Go!!
+                                    {post.caption}
                                     </div>
                                     <div class="actions">
         <p  onClick={insertInputField()} class="reply">Edit Caption</p>

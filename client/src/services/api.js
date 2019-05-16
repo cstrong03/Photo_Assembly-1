@@ -10,7 +10,7 @@ export const fetchPost = async()=>{
   try {
     const resp = await api.get('/post')
     console.log(resp);
-    return resp.data.posts
+    return resp;
   } catch (e) {
     console.log(e);
   }

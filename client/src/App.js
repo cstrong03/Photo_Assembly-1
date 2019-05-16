@@ -38,27 +38,27 @@ class App extends Component {
     }
   }
   fetchPostData = async () => {
-    const posts = await fetchPost()
-
+    const postData = await fetchPost();
+    const posts = postData.data.posts;
     await this.setState({
       posts: posts
-    })
-    await this.showFeedData();
+    });
+    // await this.showFeedData();
   }
 
-  showFeedData = async ()=>{
-    const feedData = await this.state.posts.map((post)=>{
-        return (
-          <div>
-          <img src={post.image_url} alt={post.caption} />
-          <p>{post.createdAt}</p>
-          <p>{post.updateAt}</p>
-          <button>Delete Post</button>
-          </div>
-        );
-    })
-    console.log(feedData);
-  }
+  // showFeedData = async ()=>{
+  //   const feedData = await this.state.posts.map((post)=>{
+  //       return (
+  //         <div>
+  //         <img src={post.image_url} alt={post.caption} />
+  //         <p>{post.createdAt}</p>
+  //         <p>{post.updateAt}</p>
+  //         <button>Delete Post</button>
+  //         </div>
+  //       );
+  //   })
+  //   return feedData;
+  // }
 
 
   onChangeHandler = async (token) => {
@@ -69,16 +69,7 @@ class App extends Component {
   }
 
 
-  componentDidMount= () => {
-    this.fetchPostData()
-    console.log(localStorage.getItem('token'))
-    console.log(this.state.username)
-    if (localStorage.getItem('token') != null) {
-      this.setState({
-        token: localStorage.getItem('token')
-      })
-    }
-  }
+  
 
   editToken = (token) => {
     this.setState({
@@ -151,15 +142,25 @@ class App extends Component {
         }
     }
 
-    getProfileData = (username, description, avatar, posts) => {
-      this.setState({
-        username: username,
-        description: description,
-        avatar: avatar,
-        posts: posts
-      })
+    // getProfileData = (username, description, avatar, posts) => {
+    //   this.setState({
+    //     username: username,
+    //     description: description,
+    //     avatar: avatar,
+    //     posts: posts
+    //   })
+    // }
+  
+    componentWillMount= async () => {
+      await this.fetchPostData()
+      console.log(localStorage.getItem('token'))
+      console.log(this.state.username)
+      if (localStorage.getItem('token') != null) {
+        this.setState({
+          token: localStorage.getItem('token')
+        })
+      }
     }
-
 
   render() {
     if (this.state.isLoggedIn){
@@ -171,6 +172,7 @@ class App extends Component {
           <main className="ui container custom">
             <Switch>
               <Route exact path="/" render={() => <FeedView 
+                    posts={this.state.posts}
                     username={this.state.username}
                     onFormChange={this.onFormChange} 
                     onLoginSubmit={this.onLoginSubmit} 
@@ -201,7 +203,7 @@ class App extends Component {
               </header>
               <main className="ui container custom">
                 <Switch>
-                  <Route exact path="/" render={() => <FeedView />} />
+                  <Route exact path="/" render={() => <FeedView posts={this.state.posts || []}/>} />
                   <Route path="/login" 
                         render={() => <Login 
                         username={this.state.username}
