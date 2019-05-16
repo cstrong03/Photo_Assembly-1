@@ -16,6 +16,17 @@ export const fetchPost = async()=>{
   }
 }
 
+export const fetchUserPost = async(id)=>{
+  try{
+const resp = await api.get(`/user/${id}`)
+console.log(resp);
+return resp.data.allPostsByUser
+  } catch(e){
+    console.log(e)
+  }
+}
+
+
 export const createAPost = async(data)=>{
   try {
     const resp = await api.post('/post/create', data)
@@ -96,20 +107,21 @@ export const loginUser = async(data)=>{
   }
 }
 
-// export const uploadStuff = async(data) => {
-//   try {
-//     const resp = await axios({
-//       method: "POST",
-//       url:`${URL}/image-upload`, 
-//       data: data,
-//       headers: {
-//         "Content-Type": "image/jpeg",
-//         "x-amz-meta-fieldname": "image"
-//       }
-//     })
-//     console.log(resp)
-//     return resp.data.imageUrl
-//   } catch (e) {
-//     console.log(e)
-//   }
-// }
+export const uploadStuff = async(data) => {
+  try {
+    const resp = await axios({
+      method: "POST",
+      url:`${URL}/image-upload`,
+      data: data,
+      headers: {
+        "Content-Type": "image/jpeg",
+        "x-amz-meta-fieldname": "image"
+      }
+    })
+    console.log(resp)
+    return resp.data.imageUrl
+  } catch (e) {
+    console.log(e)
+  }
+}
+
