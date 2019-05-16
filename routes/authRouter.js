@@ -2,7 +2,7 @@ const express = require('express')
 const authRouter = express.Router()
 const { passport, jwtSign } = require('../auth/auth.js')
 const bcrypt = require('bcrypt')
-const { User } = require('../models.js')
+const { User, Post } = require('../models.js')
 
 
 
@@ -38,12 +38,12 @@ authRouter.post('/login', (req, res, next) => {
         const {username, password} = req.body;
         console.log(req.body)
 
-        const user = await User.findOne({where: {username}});
+        const user = await User.findOne({where: {username}, include: [Post]});
         console.log(user)
         const valid =  await bcrypt.compare(password, user.password);
         if (valid) {
-        const { username, id } = user
-        const payload = { username, id }
+        const { username, posts, id } = user
+        const payload = { username, posts, id };
 
         const token = jwtSign(payload)
         console.log(token)

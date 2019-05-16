@@ -10,43 +10,43 @@ class UpdatePosts extends Component{
       updated: false
     }
   }
-  onUpdateChange = async(event)=>{
-    const element = event.target
-    const name = element.name
-    const value = element.value
+  // onUpdateChange = async(event)=>{
+  //   const element = event.target
+  //   const name = element.name
+  //   const value = element.value
 
-    console.log(this.state);
+  //   console.log(this.state);
 
-    await this.setState(state => {
-      return {
-        ...state,
-        'caption': { ...state.caption, [name]: value }
-      }
-    })
-  }
+  //   await this.setState(state => {
+  //     return {
+  //       ...state,
+  //       'caption': { ...state.caption, [name]: value }
+  //     }
+  //   })
+  // }
 
 
-  onUpdateSubmit = async (event) => {
-    event.preventDefault()
+  // onUpdateSubmit = async (event) => {
+  //   event.preventDefault()
 
-    console.log(`Form submitted: `, this.props.nameofprop)
+  //   console.log(`Form submitted: `, this.props.nameofprop)
 
-    let refreshFeed = {
-      caption: this.state.caption
-    }
+  //   let refreshFeed = {
+  //     caption: this.state.caption
+  //   }
 
-    console.log(refreshFeed)
+  //   console.log(refreshFeed)
 
-    const news = await refreshFeed(this.props.currentCaption.id, refreshFeed)
+  //   const news = await refreshFeed(this.props.currentCaption.id, refreshFeed)
 
-    this.setState({
-      caption: caption,
-      updated: true
-    })
+  //   this.setState({
+  //     caption: caption,
+  //     updated: true
+  //   })
 
-    console.log(this.props)
-  }
-}
+  //   console.log(this.props)
+  // }
+
   render(){
     return(
       <div>
