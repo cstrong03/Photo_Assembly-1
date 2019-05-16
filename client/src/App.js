@@ -9,7 +9,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import { Route, Link } from 'react-router-dom'
 import Profile from './components/Profile'
-import { createUser } from './services/api'
+import { createUser, loginUser } from './services/api'
 
 import blankPic from './assets/placeholder.png'
 
@@ -52,21 +52,13 @@ class App extends Component {
   }
 
   onFormChange = (event) => {
-        // const element = event.target
-        // const name = element.name
-        // const value = element.value
         const { name, value } = event.target;
-        // console.log(name, value)
-        // const newState = {}
-        // newState[name] = value
         this.setState({[name]: value})
     }
 
     onFormSubmit = async (event) => {
         event.preventDefault()
-
         console.log("Form Submitted: ")
-
         const setUser = {
             "email": this.state.email,
             "username": this.state.username,
@@ -77,6 +69,30 @@ class App extends Component {
         this.setState({
             created: true
         })
+    }
+
+    onLoginSubmit = async (event) => {
+        event.preventDefault()
+        console.log("Form Submitted: ")
+        try {
+        const setUser = {
+            "username": this.state.username,
+            "password": this.state.password
+        }
+        console.log(setUser)
+
+        const user = await loginUser(setUser)
+        this.props.onChangeHandler(user.token)
+        localStorage.setItem('token', user.token)
+        console.log(user)
+        console.log(localStorage.getItem('token'))
+
+        this.setState({
+            isLoggedIn: true
+        })
+        } catch (e) {
+        console.log("Wrong Username or Password: ", e)
+        }
     }
 
   render() {
@@ -92,7 +108,13 @@ class App extends Component {
           <Route path="/feed" render={() => <FeedView />} />
           <Route path="/post/create" render={() => <CreatePost />} />
           <Route path="/profile" render={() => <Profile editToken={this.editToken} token={this.state.token} />} />
-          <Route path="/login" render={() => <Login onChangeHandler={this.onChangeHandler} />} />
+          <Route path="/login" 
+                render={() => <Login 
+                username={this.state.username}
+                password={this.state.password}
+                onFormChange={this.onFormChange} 
+                onLoginSubmit={this.onLoginSubmit} 
+                />} />
           <Route path="/register" 
                 render={() => <Register 
                 username={this.state.username} 
@@ -101,8 +123,7 @@ class App extends Component {
                 createdUser={this.state.createdUser} 
                 onFormChange={this.onFormChange}
                 onFormSubmit={this.onFormSubmit}
-                createdUser={this.state.createdUser}
-            />} />
+                />} />
 
         </main>
         <footer>
