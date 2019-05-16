@@ -33,7 +33,8 @@ class App extends Component {
       currentUserId: null,
       description: "",
       avatar: blankPic,
-      posts: []
+      posts: [],
+      homepage:''
     }
   }
       fetchPostData = async()=>{
@@ -202,6 +203,7 @@ class App extends Component {
                         />} />
                   <Route path="/register" 
                         render={() => <Register 
+                        homepage={this.state.homepage}
                         username={this.state.username} 
                         email={this.state.email} 
                         password={this.state.password} 

@@ -3,7 +3,8 @@ import { Link, Redirect } from 'react-router-dom'
 
 export default class Register extends Component {
     render() {
-        const { handleImageChange, avatar, description, username, email, password, createdUser, onFormChange, onFormSubmit } = this.props;
+        const { homepage, handleImageChange, avatar, description, username, email, password, createdUser, onFormChange, onFormSubmit } = this.props;
+
         let isCreated = createdUser ? <Redirect to="/login" /> : null
         return (
             <div>
@@ -27,6 +28,10 @@ export default class Register extends Component {
                     <div className="field">
                         <label>Password</label>
                         <input type="password" name="password" value={password} placeholder="Password" onChange={onFormChange} />
+                    </div>
+                    <div className="field">
+                        <label>Homepage</label>
+                        <input type="text" name="email" value={homepage} placeholder="Homepage" onChange={onFormChange} />
                     </div>
                     <div className="field">
                         <label>Description</label>
