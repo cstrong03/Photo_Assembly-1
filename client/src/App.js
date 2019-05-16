@@ -12,7 +12,7 @@ import Profile from './components/Profile'
 import { createUser, loginUser } from './services/api'
 import { fetchPost } from './services/api'
 
-import blankPic from './assets/placeholder.png'
+import blankPic from './assets/user.jpg'
 
 
 class App extends Component {
