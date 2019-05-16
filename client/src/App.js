@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import UpperMenu from './components/UpperMenu'
 import LowerMenu from './components/LowerMenu'
+import UpdateFeed from './components/UpdateFeed'
 
 import FeedView from './components/FeedView'
 import CreatePost from './components/CreatePost'
@@ -10,6 +11,7 @@ import Register from './components/Register'
 import { Route, Link } from 'react-router-dom'
 import Profile from './components/Profile'
 import { createUser, loginUser } from './services/api'
+import { fetchPost } from './services/api'
 
 import blankPic from './assets/placeholder.png'
 
@@ -26,8 +28,33 @@ class App extends Component {
     username: "",
     password: "",
     createdUser: false,
-    isLoggedIn: false
+    isLoggedIn: false,
+
+    posts: []
   }
+
+  fetchPostData = async()=>{
+    const posts = await fetchPost()
+
+    await this.setState({
+      posts: posts
+    })
+    this.showFeedData();
+  }
+
+  showFeedData = ()=>{
+    const feedData = this.state.posts.map((post)=>{
+        return (
+          <div>
+          <img src={post.image_url} alt={post.caption} />
+          <p>{post.createdAt}</p>
+          <p>{post.updateAt}</p>
+          </div>
+        )
+    })
+    console.log(feedData);
+  }
+
 
   onChangeHandler = async (token) => {
     await this.setState({
@@ -36,7 +63,9 @@ class App extends Component {
     console.log(this.state.token)
   }
 
+
   componentDidMount() {
+    this.fetchPostData()
     console.log(localStorage.getItem('token'))
     if (localStorage.getItem('token') != null) {
       this.setState({
@@ -95,6 +124,9 @@ class App extends Component {
         }
     }
 
+
+
+
   render() {
     return (
       <div >
@@ -108,27 +140,29 @@ class App extends Component {
           <Route path="/feed" render={() => <FeedView />} />
           <Route path="/post/create" render={() => <CreatePost />} />
           <Route path="/profile" render={() => <Profile editToken={this.editToken} token={this.state.token} />} />
-          <Route path="/login" 
-                render={() => <Login 
+          <Route path="/login"
+                render={() => <Login
                 username={this.state.username}
                 password={this.state.password}
-                onFormChange={this.onFormChange} 
-                onLoginSubmit={this.onLoginSubmit} 
+                onFormChange={this.onFormChange}
+                onLoginSubmit={this.onLoginSubmit}
                 />} />
-          <Route path="/register" 
-                render={() => <Register 
-                username={this.state.username} 
-                email={this.state.email} 
-                password={this.state.password} 
-                createdUser={this.state.createdUser} 
+          <Route path="/register"
+                render={() => <Register
+                username={this.state.username}
+                email={this.state.email}
+                password={this.state.password}
+                createdUser={this.state.createdUser}
                 onFormChange={this.onFormChange}
                 onFormSubmit={this.onFormSubmit}
                 />} />
+
 
         </main>
         <footer>
           <LowerMenu />
         </footer>
+
       </div>
     );
   }

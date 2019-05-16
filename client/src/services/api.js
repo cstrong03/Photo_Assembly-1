@@ -100,7 +100,7 @@ export const uploadStuff = async(data) => {
   try {
     const resp = await axios({
       method: "POST",
-      url:`${URL}/image-upload`, 
+      url:`${URL}/image-upload`,
       data: data,
       headers: {
         "Content-Type": "image/jpeg",
