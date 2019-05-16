@@ -10,7 +10,6 @@ export default class Profile extends Component {
         this.props.editToken(null)
     }
 
-
     render() {
         let userName = Faker.name.firstName();
         let redirect = this.props.token === null ? <Redirect to="/" /> : null
@@ -50,7 +49,6 @@ export default class Profile extends Component {
                         </div>
                     </div>
                     <div className="ui three column grid">
-
                         <div className="ui fluid column image">
                             <img alt="random" src={Faker.image.image()} />
                         </div>
@@ -87,7 +85,6 @@ export default class Profile extends Component {
                         <div className="ui fluid column image">
                             <img alt="random" src={Faker.image.image()} />
                         </div>
-
                     </div>
                 </div>
             </div>

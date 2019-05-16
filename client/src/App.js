@@ -1,4 +1,4 @@
-import React, { Component}  from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import UpperMenu from './components/UpperMenu'
 import LowerMenu from './components/LowerMenu'
@@ -9,17 +9,29 @@ import Login from './components/Login'
 import Register from './components/Register'
 import { Route, Link } from 'react-router-dom'
 import Profile from './components/Profile'
+import { createUser, loginUser } from './services/api'
 
+import blankPic from './assets/placeholder.png'
 
 
 class App extends Component {
   state = {
-    token: null
+    placeholder: blankPic,
+    createdPost: false,
+    uploadedFile: '',
+    previewLoaded: false,
+
+    token: null,
+    email: "",
+    username: "",
+    password: "",
+    createdUser: false,
+    isLoggedIn: false
   }
 
   onChangeHandler = async (token) => {
     await this.setState({
-      token:token
+      token: token
     })
     console.log(this.state.token)
   }
@@ -39,27 +51,86 @@ class App extends Component {
     })
   }
 
+  onFormChange = (event) => {
+        const { name, value } = event.target;
+        this.setState({[name]: value})
+    }
+
+    onFormSubmit = async (event) => {
+        event.preventDefault()
+        console.log("Form Submitted: ")
+        const setUser = {
+            "email": this.state.email,
+            "username": this.state.username,
+            "password": this.state.password
+        }
+        const user = await createUser(setUser)
+        console.log(user)
+        this.setState({
+            created: true
+        })
+    }
+
+    onLoginSubmit = async (event) => {
+        event.preventDefault()
+        console.log("Form Submitted: ")
+        try {
+        const setUser = {
+            "username": this.state.username,
+            "password": this.state.password
+        }
+        console.log(setUser)
+
+        const user = await loginUser(setUser)
+        this.props.onChangeHandler(user.token)
+        localStorage.setItem('token', user.token)
+        console.log(user)
+        console.log(localStorage.getItem('token'))
+
+        this.setState({
+            isLoggedIn: true
+        })
+        } catch (e) {
+        console.log("Wrong Username or Password: ", e)
+        }
+    }
+
   render() {
-  return (
-    <div >
-      <header>
-        <Link to="/">
-          <UpperMenu />
-        </Link>
-      </header>
-      <main className="ui container custom">
-        <Route exact path="/" render={() => <Login onChangeHandler={this.onChangeHandler}/>} />
-        <Route path="/feed" render={() => <FeedView />}/>
-        <Route path="/post/create" render={() => <CreatePost/>}/>
-        <Route path="/profile" render={() => <Profile editToken={this.editToken} token={this.state.token} />}/>
-        <Route path="/login" render={() => <Login onChangeHandler={this.onChangeHandler}/>} />
-        <Route path="/register" render={() => <Register />} />
-      </main>
-      <footer>
-        <LowerMenu />
-      </footer>
-    </div>
-  );
+    return (
+      <div >
+        <header>
+          <Link to="/">
+            <UpperMenu />
+          </Link>
+        </header>
+        <main className="ui container custom">
+          <Route exact path="/" render={() => <Login onChangeHandler={this.onChangeHandler} />} />
+          <Route path="/feed" render={() => <FeedView />} />
+          <Route path="/post/create" render={() => <CreatePost />} />
+          <Route path="/profile" render={() => <Profile editToken={this.editToken} token={this.state.token} />} />
+          <Route path="/login" 
+                render={() => <Login 
+                username={this.state.username}
+                password={this.state.password}
+                onFormChange={this.onFormChange} 
+                onLoginSubmit={this.onLoginSubmit} 
+                />} />
+          <Route path="/register" 
+                render={() => <Register 
+                username={this.state.username} 
+                email={this.state.email} 
+                password={this.state.password} 
+                createdUser={this.state.createdUser} 
+                onFormChange={this.onFormChange}
+                onFormSubmit={this.onFormSubmit}
+                />} />
+
+        </main>
+        <footer>
+          <LowerMenu />
+        </footer>
+      </div>
+    );
   }
 }
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { loginUser } from '../services/api'
 
 export default class Login extends Component {
     constructor(props) {
@@ -43,17 +42,19 @@ export default class Login extends Component {
 
 
 
+
     render() {
+        const { username, password, onLoginSubmit, onFormChange } = this.props;
         return (
             <div>
-                <form className="ui form" onSubmit={this.onFormSubmit}>
+                <form className="ui form" onSubmit={onLoginSubmit}>
                     <div className="field">
                         <label>Username</label>
-                        <input type="text" name="username" value={this.state.username} placeholder="Username" onChange={this.onFormChange}/>
+                        <input type="text" name="username" value={username} placeholder="Username" onChange={onFormChange}/>
                     </div>
                     <div className="field">
                         <label>Password</label>
-                        <input type="password" name="password" value={this.state.password} placeholder="Password" onChange={this.onFormChange}/>
+                        <input type="password" name="password" value={password} placeholder="Password" onChange={onFormChange}/>
                     </div>
                     <button className="ui positive fluid button" type="submit">Sign In</button>
                 </form>
