@@ -162,11 +162,9 @@ class App extends Component {
             <Switch>
               <Route exact path="/" render={() => <FeedView 
                     username={this.state.username}
-                    password={this.state.password}
                     onFormChange={this.onFormChange} 
                     onLoginSubmit={this.onLoginSubmit} 
                     />} />
-              <Route path="/feed" render={() => <FeedView />} />
               <Route path="/post/create" render={() => <CreatePost />} />
               <Route path="/profile" render={() => <Profile editToken={this.editToken} token={this.state.token} />} />
               <Route path="/login" 
