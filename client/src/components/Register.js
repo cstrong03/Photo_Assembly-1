@@ -3,17 +3,20 @@ import { Link, Redirect } from 'react-router-dom'
 
 export default class Register extends Component {
     render() {
-        const { homepage, avatar, description, username, email, password, createdUser, onFormChange, onFormSubmit } = this.props;
+        const { homepage, handleImageChange, avatar, description, username, email, password, createdUser, onFormChange, onFormSubmit } = this.props;
+
         let isCreated = createdUser ? <Redirect to="/login" /> : null
         return (
             <div>
                 { isCreated }
                 <form className="ui form" onSubmit={onFormSubmit}>
                     <div className="image">
-                                <img alt="random" src={avatar} className="ui circular fluid image" />
-                                <input ref={fileInput => this.fileInput = fileInput} style={{ display: 'none' }} type="file" onChange={event => this.handleImageChange(event)} />
-                                <div onClick={() => this.fileInput.click()} className="ui button" tabIndex="0">Choose Avatar</div>
+                                <img alt="random" src={avatar} className="ui circular fluid tiny image" />
                             </div>
+                    <div className="field" >
+                        <input ref={fileInput => this.fileInput = fileInput} style={{ display: 'none' }} type="file" onChange={event => handleImageChange(event)} />
+                                <div onClick={() => this.fileInput.click()} className="ui button" tabIndex="0">Choose Avatar</div>
+                                </div>
                     <div className="field">
                         <label>Email</label>
                         <input type="text" name="email" value={email} placeholder="Email" onChange={onFormChange} />

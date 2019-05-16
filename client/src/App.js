@@ -113,7 +113,7 @@ class App extends Component {
         reader.onloadend = () => {
             this.setState({
                 file: file,
-                picture: reader.result,
+                avatar: reader.result,
                 preview: true
             });
         }
