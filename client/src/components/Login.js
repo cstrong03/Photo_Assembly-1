@@ -13,13 +13,7 @@ export default class Login extends Component {
     }
 
     onFormChange = (event) => {
-        // const element = event.target
-        // const name = element.name
-        // const value = element.value
         const { name, value } = event.target;
-        // console.log(name, value)
-        // const newState = {}
-        // newState[name] = value
         this.setState({[name]: value})
     }
 
