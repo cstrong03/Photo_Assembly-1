@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { createAPost } from '../services/api'
 import axios from 'axios'
 import blankPic from '../assets/placeholder.png'
+import { Redirect } from 'react-router-dom'
 
 export default class CreatePost extends Component {
     state = {
@@ -62,6 +63,7 @@ export default class CreatePost extends Component {
         this.setState({
             created: true
         })
+        return( <Redirect to="/"/> )
     }
 
     onFormChange = (event) => {
@@ -71,8 +73,10 @@ export default class CreatePost extends Component {
     }
 
     render() {
+        let afterSubmit = this.state.created ? <Redirect to="/"/> : null
         return (
             <div className="ui one column grid">
+            {afterSubmit}
                 <div className="column">
                     <form onSubmit={(e) => this.submitFile(e)}>
                         <div className="ui fluid">
@@ -92,6 +96,7 @@ export default class CreatePost extends Component {
                 </div>
             </div>
         )
+        
     }
 }
 
