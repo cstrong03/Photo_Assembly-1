@@ -12,7 +12,7 @@ import Profile from './components/Profile'
 import { createUser, loginUser } from './services/api'
 import { fetchPost } from './services/api'
 
-import blankPic from './assets/placeholder.png'
+import blankPic from './assets/user.jpg'
 
 
 class App extends Component {
@@ -170,13 +170,12 @@ class App extends Component {
             <Switch>
               <Route exact path="/" render={() => <FeedView 
                     username={this.state.username}
-                    password={this.state.password}
                     onFormChange={this.onFormChange} 
                     onLoginSubmit={this.onLoginSubmit} 
                     />} />
-              <Route path="/feed" render={() => <FeedView />} />
               <Route path="/post/create" render={() => <CreatePost userId={this.state.userId}/>} />
               <Route path="/profile" render={() => <Profile getProfileData={this.getProfileData} userId={this.state.userId} editToken={this.editToken} token={this.state.token} />} />
+
               <Route path="/login" 
                     render={() => <Login 
                     isLoggedIn={this.state.isLoggedIn}

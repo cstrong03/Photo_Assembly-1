@@ -3,8 +3,26 @@ import Comment from './Comment'
 import Faker from 'faker';
 
 export default class Post extends Component {
+
+
+
+
     render() {
         let userName = Faker.name.firstName();
+
+        let input = null
+
+        let insertInputField = ()=>{
+            input = (
+                <div className="ui large transparent left icon input">
+                        <i className="comment outline icon"></i>
+                        <input type="text" placeholder="Caption" />
+                    </div>
+            )
+        }
+
+        
+
         return (
             <div className="ui fluid card">
                 <div className="content">
@@ -31,6 +49,9 @@ export default class Post extends Component {
                                 <div className="text">
                                     This is Where the Caption Will Go!!
                                     </div>
+                                    <div class="actions">
+        <p  onClick={insertInputField()} class="reply">Edit Caption</p>
+      </div>{input}
                             </div>
                         </div>
                     </div>

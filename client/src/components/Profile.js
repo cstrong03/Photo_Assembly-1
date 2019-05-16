@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import { getAUser } from '../services/api'
 import blankAvatar from "../assets/blankuser.jpg"
 
+
 export default class Profile extends Component {
     constructor() {
         super()
