@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 export default class Login extends Component {
     render() {
         const { username, password, onLoginSubmit, onFormChange } = this.props;
+        console.log(username);
         return (
             <div>
                 <form className="ui form" onSubmit={(e) => onLoginSubmit(e)}>
