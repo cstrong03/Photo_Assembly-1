@@ -65,6 +65,18 @@ async function main() {
     image_url: 'https://cdn.pixabay.com/photo/2013/10/16/14/04/polar-bear-196318_1280.jpg',
     caption: 'Do you even lift bro?!?!'
   })
+  const post05 = await Post.create({
+    image_url: 'https://cdn.pixabay.com/photo/2013/10/16/14/04/polar-bear-196318_1280.jpg',
+    caption: 'Do you even lift bro?!?!'
+  })
+  const post06 = await Post.create({
+    image_url: 'https://cdn.pixabay.com/photo/2013/10/16/14/04/polar-bear-196318_1280.jpg',
+    caption: 'Do you even lift bro?!?!'
+  })
+  const post07 = await Post.create({
+    image_url: 'https://cdn.pixabay.com/photo/2013/10/16/14/04/polar-bear-196318_1280.jpg',
+    caption: 'Do you even lift bro?!?!'
+  })
 
   const comment01 = await Comment.create({
     comment: 'Woooooooooow'
@@ -78,7 +90,9 @@ async function main() {
   const comment04 = await Comment.create({
     comment: `Factz my guy!!!`
   })
-
+  await post05.setUser(cai)
+  await post06.setUser(cai)
+  await post07.setUser(cai)
   await post03.setUser(cai)
   await comment01.setUser(cai)
   await post01.setUser(niecey)
