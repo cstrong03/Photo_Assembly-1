@@ -1,15 +1,9 @@
 import React, { Component } from 'react'
 import Faker from 'faker';
 
-
 export default class Comment extends Component {
-
-
-
     render() {
-
         let userName = Faker.name.firstName()
-
         return (
             <div className="ui comments">
                 <div className="comment">
