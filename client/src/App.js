@@ -8,7 +8,7 @@ import FeedView from './components/FeedView'
 import CreatePost from './components/CreatePost'
 import Login from './components/Login'
 import Register from './components/Register'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, Switch } from 'react-router-dom'
 import Profile from './components/Profile'
 import { createUser, loginUser } from './services/api'
 import { fetchPost } from './services/api'
@@ -17,21 +17,7 @@ import blankPic from './assets/placeholder.png'
 
 
 class App extends Component {
-  state = {
-    placeholder: blankPic,
-    createdPost: false,
-    uploadedFile: '',
-    previewLoaded: false,
 
-    token: null,
-    email: "",
-    username: "",
-    password: "",
-    createdUser: false,
-    isLoggedIn: false,
-
-    posts: []
-  }
 
   fetchPostData = async()=>{
     const posts = await fetchPost()
@@ -40,7 +26,30 @@ class App extends Component {
       posts: posts
     })
     this.showFeedData();
+  constructor() {
+    super();
+    this.state = {
+      placeholder: blankPic,
+      createdPost: false,
+      uploadedFile: '',
+      previewLoaded: false,
+
+      token: null,
+      email: "",
+      username: "",
+      password: "",
+      createdUser: false,
+      isLoggedIn: false,
+      posts: []
+    }
   }
+      fetchPostData = async()=>{
+    const posts = await fetchPost()
+
+    await this.setState({
+      posts: posts
+    })
+    this.showFeedData();
 
   showFeedData = ()=>{
     const feedData = this.state.posts.map((post)=>{
@@ -96,14 +105,15 @@ class App extends Component {
         const user = await createUser(setUser)
         console.log(user)
         this.setState({
-            created: true
+            createdUser: true
         })
     }
 
     onLoginSubmit = async (event) => {
-        event.preventDefault()
+      try {
+        event.preventDefault();
         console.log("Form Submitted: ")
-        try {
+       
         const setUser = {
             "username": this.state.username,
             "password": this.state.password
@@ -111,7 +121,7 @@ class App extends Component {
         console.log(setUser)
 
         const user = await loginUser(setUser)
-        this.props.onChangeHandler(user.token)
+        this.onChangeHandler(user.token)
         localStorage.setItem('token', user.token)
         console.log(user)
         console.log(localStorage.getItem('token'))
@@ -136,7 +146,13 @@ class App extends Component {
           </Link>
         </header>
         <main className="ui container custom">
-          <Route exact path="/" render={() => <Login onChangeHandler={this.onChangeHandler} />} />
+        <Switch>
+          <Route exact path="/" render={() => <Login 
+                username={this.state.username}
+                password={this.state.password}
+                onFormChange={this.onFormChange} 
+                onLoginSubmit={this.onLoginSubmit} 
+                />} />
           <Route path="/feed" render={() => <FeedView />} />
           <Route path="/post/create" render={() => <CreatePost />} />
           <Route path="/profile" render={() => <Profile editToken={this.editToken} token={this.state.token} />} />
@@ -156,8 +172,7 @@ class App extends Component {
                 onFormChange={this.onFormChange}
                 onFormSubmit={this.onFormSubmit}
                 />} />
-
-
+        </Switch>
         </main>
         <footer>
           <LowerMenu />

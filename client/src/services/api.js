@@ -18,9 +18,9 @@ export const fetchPost = async()=>{
 
 export const createAPost = async(data)=>{
   try {
-    const resp = await api.post('/post', data)
+    const resp = await api.post('/post/create', data)
     console.log(resp);
-    return resp.data.newPost    //waiting to create posts
+    return resp.data    //waiting to create posts
   } catch (e) {
     console.log(e);
   }
@@ -113,3 +113,4 @@ export const uploadStuff = async(data) => {
     console.log(e)
   }
 }
+
