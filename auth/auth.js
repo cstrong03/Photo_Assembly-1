@@ -20,8 +20,8 @@ passport.use('signup', new LocalStrategy({
   try {
       console.log(req.body);
     const { body: { email, homepage, description } } = req
-    const hashedPassword = async (pw) => await bcrypt.hash(pw, 12);
-    password = await hashedPassword(password);
+    // const hashedPassword = async (pw) => await bcrypt.hash(pw, 12);
+    // password = await hashedPassword(password);
     const user = await User.create({
       email: email,
       username: username,
