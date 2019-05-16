@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Faker from 'faker';
 import Post from './Post'
 import { Redirect } from 'react-router-dom'
+import { getAUser } from '../services/api'
 
 export default class Profile extends Component {
 
