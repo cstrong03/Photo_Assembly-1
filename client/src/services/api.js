@@ -96,20 +96,21 @@ export const loginUser = async(data)=>{
   }
 }
 
-// export const uploadStuff = async(data) => {
-//   try {
-//     const resp = await axios({
-//       method: "POST",
-//       url:`${URL}/image-upload`, 
-//       data: data,
-//       headers: {
-//         "Content-Type": "image/jpeg",
-//         "x-amz-meta-fieldname": "image"
-//       }
-//     })
-//     console.log(resp)
-//     return resp.data.imageUrl
-//   } catch (e) {
-//     console.log(e)
-//   }
-// }
+export const uploadStuff = async(data) => {
+  try {
+    const resp = await axios({
+      method: "POST",
+      url:`${URL}/image-upload`,
+      data: data,
+      headers: {
+        "Content-Type": "image/jpeg",
+        "x-amz-meta-fieldname": "image"
+      }
+    })
+    console.log(resp)
+    return resp.data.imageUrl
+  } catch (e) {
+    console.log(e)
+  }
+}
+
