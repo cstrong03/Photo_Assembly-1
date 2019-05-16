@@ -42,18 +42,18 @@ class App extends Component {
     await this.setState({
       posts: posts
     })
-    this.showFeedData();
+    await this.showFeedData();
   }
 
-  showFeedData = ()=>{
-    const feedData = this.state.posts.map((post)=>{
+  showFeedData = async ()=>{
+    const feedData = await this.state.posts.map((post)=>{
         return (
           <div>
           <img src={post.image_url} alt={post.caption} />
           <p>{post.createdAt}</p>
           <p>{post.updateAt}</p>
           </div>
-        )
+        );
     })
     console.log(feedData);
   }
