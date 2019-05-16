@@ -18,14 +18,15 @@ passport.use('signup', new LocalStrategy({
   passReqToCallback: true
 }, async (req, username, password, done) => {
   try {
-    const { body: { email, description } } = req
+    const { body: { email, homepage, description } } = req
     const hashedPassword = async (pw) => await bcrypt.hash(pw, 12);
     password = await hashedPassword(password);
     const user = await User.create({
-      email: email,
-      username: username,
-      password: password,
-      description: description
+      "email": email,
+      "username": username,
+      "password": password,
+      "homepage": homepage,
+      "description": description
     })
 
     if (!user) {
