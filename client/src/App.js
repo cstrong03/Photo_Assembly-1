@@ -16,15 +16,6 @@ import blankPic from './assets/placeholder.png'
 
 
 class App extends Component {
-
-
-  fetchPostData = async()=>{
-    const posts = await fetchPost()
-
-    await this.setState({
-      posts: posts
-    })
-    this.showFeedData();
   constructor() {
     super();
     this.state = {
@@ -38,10 +29,10 @@ class App extends Component {
       password: "",
       createdUser: false,
       isLoggedIn: false,
-      userId: ''
+      userId: '',
       currentUserId: null,
       description: "",
-      avatar: blankPic
+      avatar: blankPic,
       posts: []
     }
   }
@@ -52,6 +43,7 @@ class App extends Component {
       posts: posts
     })
     this.showFeedData();
+  }
 
   showFeedData = ()=>{
     const feedData = this.state.posts.map((post)=>{
@@ -75,7 +67,7 @@ class App extends Component {
   }
 
 
-  componentDidMount() {
+  componentDidMount= () => {
     this.fetchPostData()
     console.log(localStorage.getItem('token'))
     console.log(this.state.username)
@@ -112,7 +104,7 @@ class App extends Component {
         })
     }
 
-        handleImageChange(event) {
+        handleImageChange = (event) => {
         event.preventDefault();
         let reader = new FileReader();
         let file = event.target.files[0];
@@ -159,7 +151,6 @@ class App extends Component {
 
 
   render() {
-
     if (this.state.isLoggedIn){
       return (
         <div >
@@ -227,5 +218,6 @@ class App extends Component {
     }
   }
 }
+
 
 export default App;
