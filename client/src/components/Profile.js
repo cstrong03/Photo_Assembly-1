@@ -3,17 +3,40 @@ import Faker from 'faker';
 import Post from './Post'
 import { Redirect } from 'react-router-dom'
 import { getAUser } from '../services/api'
+import blankAvatar from "../assets/blankuser.jpg"
+
 
 export default class Profile extends Component {
-
+    constructor() {
+        super()
+        this.state = {
+            userData: {}
+        }
+    }
+    
     logoutUser = () => {
         localStorage.clear();
         this.props.editToken(null)
     }
 
+    
+    componentDidMount = async () => {
+        const something = await getAUser(this.props.userId)
+
+        this.setState({
+            userData: something
+        })
+
+        console.log(this.state.userData)
+    }
+
     render() {
         let userName = Faker.name.firstName();
         let redirect = this.props.token === null ? <Redirect to="/" /> : null
+        let { userData } = this.state
+
+        let avatar = userData.avatar || blankAvatar
+
         return (
             <div>
                 {redirect}
@@ -28,18 +51,16 @@ export default class Profile extends Component {
                 <div className="ui fluid bottom attached segment">
                     <div className="ui divided items">
                         <div className="item">
-                            <div className="ui circular image">
-                                <img src={Faker.image.avatar()} />
+                            <div className="ui small circular image">
+                                <img src={avatar} />
                             </div>
                             <div className="content">
-                                <a className="header">{userName}</a>
+                                <p className="header">{userData.username}</p>
                                 <div className="meta">
-                                    <span className="cinema">insert website here</span>
+                                    <span className="cinema">{userData.homepage}</span>
                                 </div>
                                 <div className="description">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga aperiam
-                                        soluta molestiae excepturi nostrum veniam ea quos eligendi blanditiis veritatis facere
-                                        doloribus, odio totam. Veniam sint est vero mollitia cupiditate!</p>
+                                    <p>{userData.description}</p>
                                 </div>
                                 <div className="extra">
                                     <div className="ui right floated primary button">

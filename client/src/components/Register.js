@@ -31,7 +31,7 @@ export default class Register extends Component {
                     </div>
                     <div className="field">
                         <label>Homepage</label>
-                        <input type="text" name="email" value={homepage} placeholder="Homepage" onChange={onFormChange} />
+                        <input type="text" name="homepage" value={homepage} placeholder="Homepage" onChange={onFormChange} />
                     </div>
                     <div className="field">
                         <label>Description</label>

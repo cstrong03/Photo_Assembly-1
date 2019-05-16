@@ -23,7 +23,8 @@ const User = db.define('user', {
     },
     password: Sequelize.STRING,
     avatar: Sequelize.STRING,
-    description: Sequelize.TEXT
+    description: Sequelize.TEXT,
+    homepage: Sequelize.STRING
 });
 
 const Post = db.define('post', {

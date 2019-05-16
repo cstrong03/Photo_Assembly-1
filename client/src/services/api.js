@@ -66,6 +66,14 @@ export const getUser = async()=>{
     console.log(e)
   }
 }
+export const getAUser = async(id)=>{
+  try {
+    const resp = await api.get(`/user/${id}`)
+    return resp.data[0];
+  } catch (e) {
+    console.log(e)
+  }
+}
 
 export const createUser = async(data)=>{
   try {

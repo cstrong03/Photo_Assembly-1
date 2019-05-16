@@ -53,6 +53,7 @@ class App extends Component {
           <img src={post.image_url} alt={post.caption} />
           <p>{post.createdAt}</p>
           <p>{post.updateAt}</p>
+          <button>Delete Post</button>
           </div>
         );
     })
@@ -130,7 +131,7 @@ class App extends Component {
             "username": this.state.username,
             "password": this.state.password
         }
-        console.log(setUser)
+        console.log(setUser);
 
         const user = await loginUser(setUser)
         this.onChangeHandler(user.token)
@@ -148,7 +149,14 @@ class App extends Component {
         }
     }
 
-
+    getProfileData = (username, description, avatar, posts) => {
+      this.setState({
+        username: username,
+        description: description,
+        avatar: avatar,
+        posts: posts
+      })
+    }
 
 
   render() {
@@ -165,8 +173,9 @@ class App extends Component {
                     onFormChange={this.onFormChange} 
                     onLoginSubmit={this.onLoginSubmit} 
                     />} />
-              <Route path="/post/create" render={() => <CreatePost />} />
-              <Route path="/profile" render={() => <Profile editToken={this.editToken} token={this.state.token} />} />
+              <Route path="/post/create" render={() => <CreatePost userId={this.state.userId}/>} />
+              <Route path="/profile" render={() => <Profile getProfileData={this.getProfileData} userId={this.state.userId} editToken={this.editToken} token={this.state.token} />} />
+
               <Route path="/login" 
                     render={() => <Login 
                     isLoggedIn={this.state.isLoggedIn}
@@ -201,6 +210,7 @@ class App extends Component {
                         />} />
                   <Route path="/register" 
                         render={() => <Register 
+                        description={this.state.description}
                         homepage={this.state.homepage}
                         username={this.state.username} 
                         email={this.state.email} 

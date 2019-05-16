@@ -1,5 +1,4 @@
 const { User, Post, Comment, Like } = require('../models')
-// const bcrypt = requrie('bcrypt')
 
 async function main() {
 
@@ -14,9 +13,6 @@ async function main() {
   await Comment.destroy({
     where: {}
   });
-  // await Like.destroy({
-  //   where: {}
-  // });
 
 
   const cai = await User.create({
@@ -24,7 +20,9 @@ async function main() {
     username: 'da_real_cai',
     password: 'helloworld',
     avatar: 'https://i.pinimg.com/564x/63/a5/e8/63a5e8ee8cdcfab2f952bcd46a73e5c4.jpg',
-    description: 'blahblahblah empty data!!!'
+    description: 'blahblahblah empty data!!!',
+    homepage: "www.yahoo.com"
+    
   })
 
   const niecey = await User.create({
@@ -32,21 +30,27 @@ async function main() {
     username: 'petty_pendagrass',
     password: 'helloworld',
     avatar: 'https://i.dailymail.co.uk/i/pix/2010/12/06/article-1336035-007F32E900000258-94_196x206.jpg',
-    description: 'blahblahblah empty data!!!'
+    description: 'blahblahblah empty data!!!',
+    homepage: "www.github.com"
+
   })
   const fahad = await User.create({
     email: 'fahaddo@yahoo.com',
     username: 'fitness_savage',
     password: 'helloworld',
     avatar: 'https://i.dailymail.co.uk/i/pix/2010/12/06/article-1336035-07988498000005DC-505_196x206.jpg',
-    description: 'blahblahblah empty data!!!'
+    description: 'blahblahblah empty data!!!',
+    homepage: "www.google.com"
+
   })
   const sammi = await User.create({
     email: 'srammi@yahoo.com',
     username: 'dr_deez',
     password: 'helloworld',
     avatar: 'https://i.dailymail.co.uk/i/pix/2010/12/06/article-1336035-022F586F000004B0-721_196x206.jpg',
-    description: 'blahblahblah empty data!!!'
+    description: 'blahblahblah empty data!!!',
+    homepage: "www.facebook.com"
+
   })
 
   const post01 = await Post.create({
