@@ -38,6 +38,7 @@ class App extends Component {
       password: "",
       createdUser: false,
       isLoggedIn: false,
+      userId: ''
       currentUserId: null,
       description: "",
       avatar: blankPic
@@ -77,6 +78,7 @@ class App extends Component {
   componentDidMount() {
     this.fetchPostData()
     console.log(localStorage.getItem('token'))
+    console.log(this.state.username)
     if (localStorage.getItem('token') != null) {
       this.setState({
         token: localStorage.getItem('token')
@@ -144,8 +146,10 @@ class App extends Component {
         console.log(localStorage.getItem('token'))
 
         this.setState({
-            isLoggedIn: true
+            isLoggedIn: true,
+            userId: user.user.id
         })
+        console.log(this.state.userId)
         } catch (e) {
         console.log("Wrong Username or Password: ", e)
         }
@@ -155,6 +159,7 @@ class App extends Component {
 
 
   render() {
+
     if (this.state.isLoggedIn){
       return (
         <div >
@@ -220,7 +225,6 @@ class App extends Component {
             </div>
       );
     }
-
   }
 }
 
