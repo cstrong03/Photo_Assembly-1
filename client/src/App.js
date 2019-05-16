@@ -201,8 +201,6 @@ class App extends Component {
                         onLoginSubmit={this.onLoginSubmit} 
                         />} />
                   <Route path="/register" 
-                        avatar={this.state.avatar}
-                        handleImageChange={this.handleImageChange}
                         render={() => <Register 
                         username={this.state.username} 
                         email={this.state.email} 
@@ -210,6 +208,8 @@ class App extends Component {
                         createdUser={this.state.createdUser} 
                         onFormChange={this.onFormChange}
                         onFormSubmit={this.onFormSubmit}
+                        avatar={this.state.avatar}
+                        handleImageChange={this.handleImageChange}
                         />} />
                 </Switch>
               </main>
