@@ -23,42 +23,46 @@ async function main() {
     email: 'real3$t@yahoo.com',
     username: 'da_real_cai',
     password: 'helloworld',
-    avatar: 'https://cdn.someecards.com/posts/memes-about-work-3cD.jpg'
+    avatar: 'https://i.pinimg.com/564x/63/a5/e8/63a5e8ee8cdcfab2f952bcd46a73e5c4.jpg',
+    description: 'blahblahblah empty data!!!'
   })
 
   const niecey = await User.create({
     email: 'ayoooo@yahoo.com',
     username: 'petty_pendagrass',
     password: 'helloworld',
-    avatar: 'https://www.todaysparent.com/wp-content/uploads/2017/06/when-your-kid-becomes-a-meme-1024x576-1497986561.jpg'
+    avatar: 'https://i.dailymail.co.uk/i/pix/2010/12/06/article-1336035-007F32E900000258-94_196x206.jpg',
+    description: 'blahblahblah empty data!!!'
   })
   const fahad = await User.create({
     email: 'fahaddo@yahoo.com',
     username: 'fitness_savage',
     password: 'helloworld',
-    avatar: 'image3'
+    avatar: 'https://i.dailymail.co.uk/i/pix/2010/12/06/article-1336035-07988498000005DC-505_196x206.jpg',
+    description: 'blahblahblah empty data!!!'
   })
   const sammi = await User.create({
     email: 'srammi@yahoo.com',
     username: 'dr_deez',
     password: 'helloworld',
-    avatar: 'image4'
+    avatar: 'https://i.dailymail.co.uk/i/pix/2010/12/06/article-1336035-022F586F000004B0-721_196x206.jpg',
+    description: 'blahblahblah empty data!!!'
   })
 
   const post01 = await Post.create({
-    image_url: 'image01',
+    image_url: 'https://cdn.pixabay.com/photo/2018/02/08/22/27/flower-3140492_1280.jpg',
     caption: 'Here i am in the house'
   })
   const post02 = await Post.create({
-    image_url: 'image02',
+    image_url: 'https://i.kinja-img.com/gawker-media/image/upload/s--dEpW4lr3--/c_scale,f_auto,fl_progressive,q_80,w_1600/z7jcryloxjedsztssw39.jpg',
     caption: `Let's go to the beach!!`
   })
   const post03 = await Post.create({
-    image_url: 'image03',
+    image_url: 'https://cdn.pixabay.com/photo/2015/03/30/20/33/heart-700141_1280.jpg',
     caption: 'Mood for today: ZzZzZz'
   })
   const post04 = await Post.create({
-    image_url: 'image04',
+    image_url: 'https://cdn.pixabay.com/photo/2013/10/16/14/04/polar-bear-196318_1280.jpg',
     caption: 'Do you even lift bro?!?!'
   })
 

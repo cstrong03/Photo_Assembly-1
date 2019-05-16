@@ -53,10 +53,12 @@ export default class CreatePost extends Component {
 
         let makeAPost = {
             "image_url": this.state.imageLink,
-            "caption": this.state.caption
+            "caption": this.state.caption,
+            "user_id": this.props.userId
         }
         const post = await createAPost(makeAPost)
         console.log(post)
+        console.log(this.state.caption)
         this.setState({
             created: true
         })
@@ -69,7 +71,6 @@ export default class CreatePost extends Component {
     }
 
     render() {
-
         return (
             <div className="ui one column grid">
                 <div className="column">
@@ -84,7 +85,7 @@ export default class CreatePost extends Component {
                                 <input type="text" value={this.state.caption} onChange={(e) => this.onFormChange(e)} placeholder="Write a caption..." />
                             </div>
                             <div>
-                                {this.state.preview ? <button onClick={this.fileUploadHandle} className="fluid ui button" type="submit">Add Post</button> : null}
+                                {this.state.preview ? <button className="fluid ui button" type="submit">Add Post</button> : null}
                             </div>
                         </div>
                     </form>

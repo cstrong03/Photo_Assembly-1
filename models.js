@@ -22,7 +22,8 @@ const User = db.define('user', {
         unique: true
     },
     password: Sequelize.STRING,
-    avatar: Sequelize.STRING
+    avatar: Sequelize.STRING,
+    description: Sequelize.TEXT
 });
 
 const Post = db.define('post', {

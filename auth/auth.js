@@ -13,19 +13,19 @@ const jwtSign = (payload) => {
 }
 
 passport.use('signup', new LocalStrategy({
-//   emailField: 'email',
   usernameField: 'username',
   passwordField: 'password',
   passReqToCallback: true
 }, async (req, username, password, done) => {
   try {
-    const { body: { email } } = req
+    const { body: { email, description } } = req
     const hashedPassword = async (pw) => await bcrypt.hash(pw, 12);
     password = await hashedPassword(password);
     const user = await User.create({
       email: email,
       username: username,
-      password: password
+      password: password,
+      description: description
     })
 
     if (!user) {

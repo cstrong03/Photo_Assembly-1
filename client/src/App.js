@@ -22,13 +22,13 @@ class App extends Component {
       createdPost: false,
       uploadedFile: '',
       previewLoaded: false,
-
       token: null,
       email: "",
       username: "",
       password: "",
       createdUser: false,
-      isLoggedIn: false
+      isLoggedIn: false,
+      userId: ''
     }
   }
 
@@ -41,6 +41,7 @@ class App extends Component {
 
   componentDidMount() {
     console.log(localStorage.getItem('token'))
+    console.log(this.state.username)
     if (localStorage.getItem('token') != null) {
       this.setState({
         token: localStorage.getItem('token')
@@ -92,8 +93,10 @@ class App extends Component {
         console.log(localStorage.getItem('token'))
 
         this.setState({
-            isLoggedIn: true
+            isLoggedIn: true,
+            userId: user.user.id
         })
+        console.log(this.state.userId)
         } catch (e) {
         console.log("Wrong Username or Password: ", e)
         }
@@ -116,7 +119,7 @@ class App extends Component {
                 onLoginSubmit={this.onLoginSubmit} 
                 />} />
           <Route path="/feed" render={() => <FeedView />} />
-          <Route path="/post/create" render={() => <CreatePost />} />
+          <Route path="/post/create" render={() => <CreatePost userId={this.state.userId} />} />
           <Route path="/profile" render={() => <Profile editToken={this.editToken} token={this.state.token} />} />
           <Route path="/login" 
                 render={() => <Login 
