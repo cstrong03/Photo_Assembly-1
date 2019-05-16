@@ -9,6 +9,18 @@ export default class FeedView extends Component {
                     <Post />
                     <Post />
                     <Post />
+                    <Post />
+                    <Post />
+                    <Post />
+                    <Post />
+                    <Post />
+                    <Post />
+                    <Post />
+                    <Post />
+                    <Post />
+                    <Post />
+                    <Post />
+                    <Post />
                 </div>
             </div>
         )

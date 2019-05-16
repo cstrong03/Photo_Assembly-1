@@ -16,6 +16,17 @@ export const fetchPost = async()=>{
   }
 }
 
+export const fetchUserPost = async(id)=>{
+  try{
+const resp = await api.get(`/user/${id}`)
+console.log(resp);
+return resp.data.allPostsByUser
+  } catch(e){
+    console.log(e)
+  }
+}
+
+
 export const createAPost = async(data)=>{
   try {
     const resp = await api.post('/post/create', data)
