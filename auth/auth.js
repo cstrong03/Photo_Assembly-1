@@ -18,15 +18,16 @@ passport.use('signup', new LocalStrategy({
   passReqToCallback: true
 }, async (req, username, password, done) => {
   try {
+      console.log(req.body);
     const { body: { email, homepage, description } } = req
     const hashedPassword = async (pw) => await bcrypt.hash(pw, 12);
     password = await hashedPassword(password);
     const user = await User.create({
-      "email": email,
-      "username": username,
-      "password": password,
-      "homepage": homepage,
-      "description": description
+      email: email,
+      username: username,
+      password: password,
+      homepage: homepage,
+      description: description
     })
 
     if (!user) {
@@ -67,9 +68,8 @@ passport.use('login', new LocalStrategy({
     if (!user) {
       return done(null, false, { message: 'User not found'})
     }
-
     // compare passwords
-    const validate = await bcrypt.compare(password, username.password)
+    const validate = await bcrypt.compare(password, username.password);
 
     if (!validate) {
       return done(null, false, { message: 'Wrong password'})
