@@ -11,6 +11,12 @@ aws.config.update({
     accessKeyId: accessKeyId,
     region: 'us-east-1'
 });
+// const config = {
+//   secretAccessKey: accessKey,
+//   accessKeyId: accessKeyId,
+//   region: 'us-east-1',
+//   bucketName: 'photo-assembly'
+// }
 
 const s3 = new aws.S3();
 
@@ -27,5 +33,7 @@ const upload = multer({
     }
   })
 })
+
+
 
 module.exports = upload;
