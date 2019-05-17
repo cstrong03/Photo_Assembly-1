@@ -133,3 +133,12 @@ export const uploadStuff = async(data) => {
     console.log(e)
   }
 }
+export const getAUsersPosts = async(id)=>{
+  try {
+    const resp = await api.get(`/${id}/posts`)
+    console.log(resp.data)
+    return resp.data
+  } catch(e) {
+    console.log(e)
+  }
+}

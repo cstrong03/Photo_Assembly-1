@@ -162,6 +162,7 @@ class App extends Component {
 
     componentWillMount= async () => {
       await this.fetchPostData()
+      console.log(this.state.posts)
       console.log(localStorage.getItem('token'))
       console.log(this.state.username)
       if (localStorage.getItem('token') != null) {
@@ -182,14 +183,14 @@ class App extends Component {
             <Switch>
               <Route exact path="/" render={() => <FeedView 
                     deletePost={this.deletePost}
-
+                    isLoggedIn={this.state.isLoggedIn}
                     posts={this.state.posts}
                     username={this.state.username}
                     onFormChange={this.onFormChange}
                     onLoginSubmit={this.onLoginSubmit}
                     />} />
               <Route path="/post/create" render={() => <CreatePost userId={this.state.userId}/>} />
-              <Route path="/profile" render={() => <Profile getProfileData={this.getProfileData} userId={this.state.userId} editToken={this.editToken} token={this.state.token} />} />
+              <Route path="/profile" render={() => <Profile userId={this.state.userId} posts={this.state.posts} getProfileData={this.getProfileData} userId={this.state.userId} editToken={this.editToken} token={this.state.token} />} />
 
               <Route path="/login"
                     render={() => <Login
@@ -214,7 +215,7 @@ class App extends Component {
               </header>
               <main className="ui container custom">
                 <Switch>
-                  <Route exact path="/" render={() => <FeedView deletePost={this.deletePost} posts={this.state.posts || []}/>} />
+                  <Route exact path="/" render={() => <FeedView deletePost={this.deletePost} posts={this.state.posts || []} isLoggedIn={this.state.isLoggedIn} />} />
                   <Route path="/login" 
                         render={() => <Login 
 

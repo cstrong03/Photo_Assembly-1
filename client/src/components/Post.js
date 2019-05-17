@@ -15,7 +15,7 @@ export default class Post extends Component {
   onUpdate = (event)=>{
     event.preventDefault()
     console.log(event.target.name.id);
-    const edit = updatePosts(event.target.name.id, {caption:event.target.name.value})
+    updatePosts(event.target.name.id, {caption:event.target.name.value})
   }
   render() {
     let { post } = this.props;
@@ -37,7 +37,8 @@ export default class Post extends Component {
         return (
             <div className="ui fluid card">
                 <div className="content">
-                    <div className="right floated meta">14h<button id="banana" onClick={e => this.deletePosting(e)}>Delete</button></div>
+                    <div className="right floated meta">14h{this.props.isLoggedIn ? <button id="banana" onClick={e => this.deletePosting(e)}>Delete</button> : null}
+                    </div>
                     <img alt="random" className="ui avatar image" src={Faker.image.avatar()} /> {userName}
                 </div>
                 <div className="image">
@@ -68,12 +69,16 @@ export default class Post extends Component {
                     <Comment />
 
                 </div>
+                {this.props.isLoggedIn ?
+                <div>
                 <div className="text">{post.caption}</div>
                 <div class="actions">
                   <p onClick={insertInputField()} class="reply">
                     Edit Caption
                   </p>
                 </div>
+                </div>
+                : null}
                 {input}
             <Comment />
           <div className="extra content">

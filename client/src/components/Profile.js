@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Faker from 'faker';
 import Post from './Post'
 import { Redirect } from 'react-router-dom'
-import { getAUser } from '../services/api'
+import { getAUser, getAUsersPosts } from '../services/api'
 import blankAvatar from "../assets/blankuser.jpg"
 
 
@@ -21,8 +21,10 @@ export default class Profile extends Component {
 
     
     componentDidMount = async () => {
+        // const usersPosts =  await getAUsersPosts(this.props.userId)
+        // console.log(usersPosts)
+        console.log(this.state.posts)
         const something = await getAUser(this.props.userId)
-
         this.setState({
             userData: something
         })
@@ -34,8 +36,8 @@ export default class Profile extends Component {
         let userName = Faker.name.firstName();
         let redirect = this.props.token === null ? <Redirect to="/" /> : null
         let { userData } = this.state
-
         let avatar = userData.avatar || blankAvatar
+
 
         return (
             <div>
