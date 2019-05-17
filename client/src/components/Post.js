@@ -61,7 +61,7 @@ export default class Post extends Component {
                                 <div className="text">
                                     {post.caption}
                                     </div>
-                                    <div class="actions">
+                                    <div className="actions">
                                 </div>{input}
                             </div>
                         </div>
@@ -72,8 +72,8 @@ export default class Post extends Component {
                 {this.props.isLoggedIn ?
                 <div>
                 <div className="text">{post.caption}</div>
-                <div class="actions">
-                  <p onClick={insertInputField()} class="reply">
+                <div className="actions">
+                  <p onClick={insertInputField()} className="reply">
                     Edit Caption
                   </p>
                 </div>
