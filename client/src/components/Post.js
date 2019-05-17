@@ -8,9 +8,9 @@ export default class Post extends Component {
   // let image =
 
   deletePost = async (e, id) => {
-      console.log("about to delete", id)
-    // e.preventDefault();
-    await axios.delete(`http://localhost:4567/post/${id}`);
+      console.log("about to delete", this.props.post.id)
+        // await deletePosts(this.props.post.id);
+    await axios.delete(`http://localhost:4567/post/${this.props.post.id}`);
     console.log("deleted!")
   }
 
@@ -32,7 +32,7 @@ export default class Post extends Component {
     return (
       <div className="ui fluid card">
         <div className="content">
-          <div className="right floated meta">14h<button onClick={e => this.deletePost(e, key)}>Delete</button></div>
+          <div className="right floated meta">14h<button id="banana" onClick={e => this.deletePost(e)}>Delete</button></div>
           <img
             alt="random"
             className="ui avatar image"

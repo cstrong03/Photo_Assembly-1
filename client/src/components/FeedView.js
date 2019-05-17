@@ -10,9 +10,9 @@ export default class FeedView extends Component {
         return (
           <div className="ui one column grid">
             <div className="column">
-              {this.props.posts.map((post, key) => (<Post post={post} key={key}/>))}
+              {this.props.posts.map((post) => (<Post post={post} key={post.id}/>))}
             </div>
           </div>
         );
-    }
+    }   
 }
