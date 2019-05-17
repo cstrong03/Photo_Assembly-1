@@ -5,7 +5,6 @@ export default class Login extends Component {
     render() {
         
         const { isLoggedIn, username, password, onLoginSubmit, onFormChange } = this.props;
-        console.log(`this is ours`,isLoggedIn)
         
         let isCreated = isLoggedIn ? <Redirect to="/profile" /> : null
 
