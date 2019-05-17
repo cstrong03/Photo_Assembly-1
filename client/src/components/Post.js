@@ -32,6 +32,7 @@ export default class Post extends Component {
 //     });
 //     return singleUser
 //   }
+
   render() {
     let { post } = this.props;
     let userName = Faker.name.firstName();
@@ -69,12 +70,12 @@ export default class Post extends Component {
                             <div className="ui comments">
                         <div className="comment">
                             <div className="content">
-                                <a href="#" className="author">{userName}</a>
+                                <a href="#" className="author">{post.user.username}</a>
                                 <div className="metadata">
                                     <span className="date">Today at 5:42PM</span>
                                     {this.props.isLoggedIn ? <span><button onClick={()=>this.setState(prevState => ({edit: !prevState.edit }))} className="mini ui button">
-  Edit Caption
-</button></span> : null}
+                                    Edit Caption
+                                    </button></span> : null}
                                 </div>
                                 <div className="text">
                                     {post.caption}
@@ -86,7 +87,7 @@ export default class Post extends Component {
                         </div>
                     </div>
                     
-                    <Comment />
+                    {post.comments.map(comment => <Comment comment={comment}/>)}
 
                 </div>
                 

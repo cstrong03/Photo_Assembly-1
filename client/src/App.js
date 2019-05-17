@@ -55,8 +55,8 @@ class App extends Component {
       posts: posts
     });
   } catch(e) {
-    // alert('Please reload the page')
-    document.location.reload();
+    alert('Please reload the page')
+    // document.location.reload();
   }
     // await this.showFeedData();
   }

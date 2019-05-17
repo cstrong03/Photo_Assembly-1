@@ -6,7 +6,6 @@ export default class LowerMenu extends Component {
 
 
     render() {
-        console.log(this.props.isLoggedIn)
         if (this.props.isLoggedIn){
             return (
                 <div className="ui top fixed borderless two item massive menu">
