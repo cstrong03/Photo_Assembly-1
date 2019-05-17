@@ -21,11 +21,22 @@ export default class Post extends Component {
     console.log(event.target.name.id);
     updatePosts(event.target.name.id, {caption:event.target.name.value})
   }
+
+//   matchId = (id) => {
+//     let singleUser = axios.get(`localhost:4567/user/${id}`)
+//     .then(function (response) {
+//       console.log(response);
+//     })
+//     .catch(function (error) {
+//       console.log(error);
+//     });
+//     return singleUser
+//   }
   render() {
     let { post } = this.props;
     let userName = Faker.name.firstName();
     let input = null;
-
+   
         let insertInputField = ()=>{
             input = (
                 <form onSubmit={this.onUpdate}  className="ui mini form">
@@ -43,7 +54,7 @@ export default class Post extends Component {
                 <div className="content">
                     <div className="right floated meta">14h{this.props.isLoggedIn ? <button id="banana" onClick={e => this.deletePosting(e)}>Delete</button> : null}
                     </div>
-                    <img alt="random" className="ui avatar image" src={Faker.image.avatar()} /> {userName}
+                    <img alt="random" className="ui avatar image" src={post.user.avatar} /> {post.user.username}
                 </div>
                 <div className="image">
                     <img alt="random" src={post.image_url} />

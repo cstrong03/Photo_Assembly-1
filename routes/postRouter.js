@@ -1,16 +1,30 @@
 const express = require('express');
-const { Post } = require('../models');
+const { Post, User } = require('../models');
 const postRouter = express.Router();
 
 postRouter.get('/', async (request, response) =>
 {
   try {
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({
+        include: [{ model: User, attributes: ["username", "avatar"] }]
+    });
     response.json({posts})
   } catch (e) {
     response.status(500).json({ msg: e.message })
   }
 })
+
+// postRouter.get('/user/', async (request, response) =>
+// {
+//     try {
+//       const posts = await Post.findAll({
+//           include: [{ model: User, attributes: "username" }]
+//       });
+//       response.json({posts})
+//     } catch (e) {
+//       response.status(500).json({ msg: e.message })
+//     }
+//   })
 
 postRouter.get('/:id', async (request, response) => {
     try {
