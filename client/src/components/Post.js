@@ -1,11 +1,23 @@
 import React, { Component } from 'react'
 import Comment from './Comment'
 import Faker from 'faker';
+import { updatePosts } from '../services/api'
 
 export default class Post extends Component {
+  state ={
+    caption: this.props.caption
+  }
 
+  onUpdate = (event)=>{
+    event.preventDefault()
+    console.log(event.target.name.id);
+    const edit = updatePosts(event.target.name.id, {caption:event.target.name.value})
 
-    // let image = 
+    this.setState({
+      caption: edit
+    })
+  }
+
 
     render() {
         let { post } = this.props;
@@ -15,14 +27,16 @@ export default class Post extends Component {
 
         let insertInputField = ()=>{
             input = (
-                <div className="ui large transparent left icon input">
-                        <i className="comment outline icon"></i>
-                        <input type="text" placeholder="Caption" />
-                    </div>
+                <form onSubmit={this.onUpdate}  className="ui large transparent left icon input">
+                    <i className="comment outline icon"></i>
+                    <input name='name' id={post.id}
+                     type="text" placeholder="Caption" />
+                    <button>Edit</button>
+                </form>
             )
         }
 
-        
+
 
         return (
             <div className="ui fluid card">

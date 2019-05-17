@@ -69,7 +69,7 @@ class App extends Component {
   }
 
 
-  
+
 
   editToken = (token) => {
     this.setState({
@@ -119,7 +119,7 @@ class App extends Component {
       try {
         event.preventDefault();
         console.log("Form Submitted: ")
-       
+
         const setUser = {
             "username": this.state.username,
             "password": this.state.password
@@ -150,7 +150,7 @@ class App extends Component {
     //     posts: posts
     //   })
     // }
-  
+
     componentWillMount= async () => {
       await this.fetchPostData()
       console.log(localStorage.getItem('token'))
@@ -171,22 +171,22 @@ class App extends Component {
           </header>
           <main className="ui container custom">
             <Switch>
-              <Route exact path="/" render={() => <FeedView 
+              <Route exact path="/" render={() => <FeedView
                     posts={this.state.posts}
                     username={this.state.username}
-                    onFormChange={this.onFormChange} 
-                    onLoginSubmit={this.onLoginSubmit} 
+                    onFormChange={this.onFormChange}
+                    onLoginSubmit={this.onLoginSubmit}
                     />} />
               <Route path="/post/create" render={() => <CreatePost userId={this.state.userId}/>} />
               <Route path="/profile" render={() => <Profile getProfileData={this.getProfileData} userId={this.state.userId} editToken={this.editToken} token={this.state.token} />} />
 
-              <Route path="/login" 
-                    render={() => <Login 
+              <Route path="/login"
+                    render={() => <Login
                     isLoggedIn={this.state.isLoggedIn}
                     username={this.state.username}
                     password={this.state.password}
-                    onFormChange={this.onFormChange} 
-                    onLoginSubmit={this.onLoginSubmit} 
+                    onFormChange={this.onFormChange}
+                    onLoginSubmit={this.onLoginSubmit}
                     />} />
             </Switch>
           </main>
@@ -204,22 +204,22 @@ class App extends Component {
               <main className="ui container custom">
                 <Switch>
                   <Route exact path="/" render={() => <FeedView posts={this.state.posts || []}/>} />
-                  <Route path="/login" 
-                        render={() => <Login 
+                  <Route path="/login"
+                        render={() => <Login
                         username={this.state.username}
                         password={this.state.password}
                         isLoggedIn={this.state.isLoggedIn}
-                        onFormChange={this.onFormChange} 
-                        onLoginSubmit={this.onLoginSubmit} 
+                        onFormChange={this.onFormChange}
+                        onLoginSubmit={this.onLoginSubmit}
                         />} />
-                  <Route path="/register" 
-                        render={() => <Register 
+                  <Route path="/register"
+                        render={() => <Register
                         description={this.state.description}
                         homepage={this.state.homepage}
-                        username={this.state.username} 
-                        email={this.state.email} 
-                        password={this.state.password} 
-                        createdUser={this.state.createdUser} 
+                        username={this.state.username}
+                        email={this.state.email}
+                        password={this.state.password}
+                        createdUser={this.state.createdUser}
                         onFormChange={this.onFormChange}
                         onFormSubmit={this.onFormSubmit}
                         avatar={this.state.avatar}
