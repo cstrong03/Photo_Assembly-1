@@ -11,7 +11,7 @@ export default class FeedView extends Component {
         return (
           <div className="ui one column grid">
             <div className="column">
-              {this.props.posts.map((post, index) => (<Post deletePost={this.props.deletePost} post={post} id={index} isLoggedIn={this.props.isLoggedIn} />))}
+              {this.props.posts.map((post, index) => (<Post deletePost={this.props.deletePost} post={post} key={index} id={index} isLoggedIn={this.props.isLoggedIn} />))}
 
             </div>
           </div>

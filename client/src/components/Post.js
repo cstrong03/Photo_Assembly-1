@@ -5,6 +5,10 @@ import { updatePosts } from '../services/api'
 import axios from 'axios'
 
 export default class Post extends Component {
+    state = {
+        edit: false
+    }
+
   deletePosting = async (e, id) => {
       console.log("about to delete", this.props)
    await axios.delete(`http://localhost:4567/post/${this.props.post.id}`);
@@ -24,13 +28,13 @@ export default class Post extends Component {
 
         let insertInputField = ()=>{
             input = (
-                <form onSubmit={this.onUpdate}  className="ui large transparent left icon input">
-                    <i className="comment outline icon"></i>
+                <form onSubmit={this.onUpdate}  className="ui mini form">
                     <input name='name' id={post.id}
-                     type="text" placeholder="Caption" />
-                    <button>Edit</button>
+                     type="text" placeholder="Edit Caption" />
                 </form>
             )
+
+            return input;
         }
 
 
@@ -57,30 +61,26 @@ export default class Post extends Component {
                                 <a href="#" className="author">{userName}</a>
                                 <div className="metadata">
                                     <span className="date">Today at 5:42PM</span>
+                                    {this.props.isLoggedIn ? <span><button onClick={()=>this.setState(prevState => ({edit: !prevState.edit }))} className="mini ui button">
+  Edit Caption
+</button></span> : null}
                                 </div>
                                 <div className="text">
                                     {post.caption}
                                     </div>
-                                    <div class="actions">
-                                </div>{input}
+                                    <div className="actions">
+                                        {this.state.edit ? insertInputField() : null}
+                                </div>
                             </div>
                         </div>
                     </div>
+                    
                     <Comment />
 
                 </div>
-                {this.props.isLoggedIn ?
-                <div>
-                <div className="text">{post.caption}</div>
-                <div class="actions">
-                  <p onClick={insertInputField()} class="reply">
-                    Edit Caption
-                  </p>
-                </div>
-                </div>
-                : null}
-                {input}
-            <Comment />
+                
+
+
           <div className="extra content">
           <div className="ui large transparent left icon input">
             <i className="comment outline icon" />

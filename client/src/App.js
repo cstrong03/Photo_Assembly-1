@@ -34,7 +34,8 @@ class App extends Component {
       description: "",
       avatar: blankPic,
       posts: [],
-      homepage:''
+      homepage:'',
+      profilePosts: null
     }
   }
 
@@ -141,10 +142,15 @@ class App extends Component {
         console.log(user)
         console.log(localStorage.getItem('token'))
 
+        
         this.setState({
             isLoggedIn: true,
             userId: user.user.id
         })
+
+        
+        console.log(this.state.profilePosts)
+
         console.log(this.state.userId)
         } catch (e) {
         console.log("Wrong Username or Password: ", e)
@@ -160,11 +166,14 @@ class App extends Component {
     //   })
     // }
 
-    componentWillMount= async () => {
+    componentDidMount= async () => {
       await this.fetchPostData()
       console.log(this.state.posts)
       console.log(localStorage.getItem('token'))
-      console.log(this.state.username)
+      console.log(this.state.userId)
+
+      
+
       if (localStorage.getItem('token') != null) {
         this.setState({
           token: localStorage.getItem('token')
@@ -173,7 +182,11 @@ class App extends Component {
     }
 
   render() {
+    
     if (this.state.isLoggedIn){
+
+      const userPosts = this.state.posts.filter(post => post.userId === this.state.userId)
+      console.log(userPosts)
       return (
         <div >
           <header>
@@ -190,7 +203,7 @@ class App extends Component {
                     onLoginSubmit={this.onLoginSubmit}
                     />} />
               <Route path="/post/create" render={() => <CreatePost userId={this.state.userId}/>} />
-              <Route path="/profile" render={() => <Profile userId={this.state.userId} posts={this.state.posts} getProfileData={this.getProfileData} userId={this.state.userId} editToken={this.editToken} token={this.state.token} />} />
+              <Route path="/profile" render={() => <Profile filteredPosts={userPosts} userId={this.state.userId} posts={this.state.posts} getProfileData={this.getProfileData} userId={this.state.userId} editToken={this.editToken} token={this.state.token} />} />
 
               <Route path="/login"
                     render={() => <Login

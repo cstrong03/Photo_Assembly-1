@@ -33,6 +33,9 @@ export default class Profile extends Component {
     }
 
     render() {
+
+        console.log(this.props.filteredPosts)
+
         let userName = Faker.name.firstName();
         let redirect = this.props.token === null ? <Redirect to="/" /> : null
         let { userData } = this.state
@@ -73,42 +76,11 @@ export default class Profile extends Component {
                         </div>
                     </div>
                     <div className="ui three column grid">
+                        {this.props.filteredPosts.map((post, index) => 
                         <div className="ui fluid column image">
-                            <img alt="random" src={Faker.image.image()} />
-                        </div>
-                        <div className="ui fluid column image">
-                            <img alt="random" src={Faker.image.image()} />
-                        </div>
-                        <div className="ui fluid column image">
-                            <img alt="random" src={Faker.image.image()} />
-                        </div>
-                        <div className="ui fluid column image">
-                            <img alt="random" src={Faker.image.image()} />
-                        </div>
-                        <div className="ui fluid column image">
-                            <img alt="random" src={Faker.image.image()} />
-                        </div>
-                        <div className="ui fluid column image">
-                            <img alt="random" src={Faker.image.image()} />
-                        </div>
-                        <div className="ui fluid column image">
-                            <img alt="random" src={Faker.image.image()} />
-                        </div>
-                        <div className="ui fluid column image">
-                            <img alt="random" src={Faker.image.image()} />
-                        </div>
-                        <div className="ui fluid column image">
-                            <img alt="random" src={Faker.image.image()} />
-                        </div>
-                        <div className="ui fluid column image">
-                            <img alt="random" src={Faker.image.image()} />
-                        </div>
-                        <div className="ui fluid column image">
-                            <img alt="random" src={Faker.image.image()} />
-                        </div>
-                        <div className="ui fluid column image">
-                            <img alt="random" src={Faker.image.image()} />
-                        </div>
+                            <img alt="random" src={post.image_url} />
+                        </div>)}
+                    
                     </div>
                 </div>
             </div>
