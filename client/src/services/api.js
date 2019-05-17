@@ -38,6 +38,7 @@ export const createAPost = async(data)=>{
 }
 
 export const updatePosts = async(id, data)=>{
+  console.log(id, data)
   try {
     const resp = await api.put(`/post/${id}`, data)
     console.log(resp);
@@ -132,4 +133,3 @@ export const uploadStuff = async(data) => {
     console.log(e)
   }
 }
-
