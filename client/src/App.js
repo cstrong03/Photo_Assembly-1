@@ -48,11 +48,16 @@ class App extends Component {
   }
 
   fetchPostData = async () => {
+    try {
     const postData = await fetchPost();
     const posts = postData.data.posts;
     await this.setState({
       posts: posts
     });
+  } catch(e) {
+    // alert('Please reload the page')
+    document.location.reload();
+  }
     // await this.showFeedData();
   }
 
