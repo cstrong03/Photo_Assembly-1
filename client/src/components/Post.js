@@ -1,21 +1,19 @@
 import React, { Component } from "react";
 import Comment from "./Comment";
 import Faker from "faker";
-import { deletePosts } from "../services/api"
 import axios from 'axios'
 
 export default class Post extends Component {
-  // let image =
-
-  deletePost = async (e, id) => {
-      console.log("about to delete", this.props.post.id)
-        // await deletePosts(this.props.post.id);
-    await axios.delete(`http://localhost:4567/post/${this.props.post.id}`);
+  deletePosting = async (e, id) => {
+      console.log("about to delete", this.props)
+   await axios.delete(`http://localhost:4567/post/${this.props.post.id}`);
+   this.props.deletePost(this.props.id)
     console.log("deleted!")
+
   }
 
   render() {
-    let { post, key } = this.props;
+    let { post } = this.props;
     let userName = Faker.name.firstName();
 
     let input = null;
@@ -32,7 +30,7 @@ export default class Post extends Component {
     return (
       <div className="ui fluid card">
         <div className="content">
-          <div className="right floated meta">14h<button id="banana" onClick={e => this.deletePost(e)}>Delete</button></div>
+          <div className="right floated meta">14h<button id="banana" onClick={e => this.deletePosting(e)}>Delete</button></div>
           <img
             alt="random"
             className="ui avatar image"

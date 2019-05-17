@@ -37,6 +37,15 @@ class App extends Component {
       homepage:''
     }
   }
+
+  deletePost = async (id)=>{
+    const newpost = this.state.posts
+    newpost.splice(id,1)
+    await this.setState({
+      posts: newpost
+    })
+  }
+
   fetchPostData = async () => {
     const postData = await fetchPost();
     const posts = postData.data.posts;
@@ -172,6 +181,7 @@ class App extends Component {
           <main className="ui container custom">
             <Switch>
               <Route exact path="/" render={() => <FeedView 
+                    deletePost={this.deletePost}
                     posts={this.state.posts}
                     username={this.state.username}
                     onFormChange={this.onFormChange} 
@@ -203,7 +213,8 @@ class App extends Component {
               </header>
               <main className="ui container custom">
                 <Switch>
-                  <Route exact path="/" render={() => <FeedView posts={this.state.posts || []}/>} />
+                  <Route exact path="/" render={() => <FeedView                     deletePost={this.deletePost}
+ posts={this.state.posts || []}/>} />
                   <Route path="/login" 
                         render={() => <Login 
                         username={this.state.username}
