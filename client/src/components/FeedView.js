@@ -5,13 +5,16 @@ import Axios from 'axios';
 
 
 export default class FeedView extends Component {
+
+
     render() {
         return (
           <div className="ui one column grid">
             <div className="column">
-              {this.props.posts.map(post => (<Post onFormChange={this.props.onFormChange} post={post}/>))}
+              {this.props.posts.map((post, index) => (<Post deletePost={this.props.deletePost} post={post} id={index}/>))}
+
             </div>
           </div>
         );
-    }
+    }   
 }

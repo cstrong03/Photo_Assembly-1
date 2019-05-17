@@ -52,7 +52,7 @@ export const deletePosts = async(id, data)=>{
   try {
     const resp = await api.destroy(`/post/${id}`, data)
     console.log(resp)
-    return resp.data.deletePost
+    return resp.data
   } catch (e) {
     console.log(e);
   }
