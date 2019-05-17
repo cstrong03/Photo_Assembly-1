@@ -12,19 +12,14 @@ export default class Post extends Component {
     console.log("deleted!")
 
   }
-
-  render() {
-    let { post } = this.props;
-    let userName = Faker.name.firstName();
-
   onUpdate = (event)=>{
     event.preventDefault()
     console.log(event.target.name.id);
     const edit = updatePosts(event.target.name.id, {caption:event.target.name.value})
   }
-
-
-
+  render() {
+    let { post } = this.props;
+    let userName = Faker.name.firstName();
     let input = null;
 
         let insertInputField = ()=>{
@@ -80,18 +75,15 @@ export default class Post extends Component {
                   </p>
                 </div>
                 {input}
-              </div>
-            </div>
-          </div>
-          <Comment />
-        </div>
-        <div className="extra content">
+            <Comment />
+          <div className="extra content">
           <div className="ui large transparent left icon input">
             <i className="comment outline icon" />
             <input type="text" placeholder="Add Comment..." />
           </div>
         </div>
-      </div>
+        </div>
+
     );
   }
 }
